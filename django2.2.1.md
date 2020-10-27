@@ -213,11 +213,127 @@ python manage.py sqlmigrate polls 0001
 - 生成的 SQL 语句是为你所用的数据库定制的，所以那些和数据库有关的字段类型，比如 `auto_increment` (MySQL)、 `serial` (PostgreSQL)和 `integer primary key autoincrement` (SQLite)，Django 会帮你自动处理。那些和引号相关的事情 - 例如，是使用单引号还是双引号 - 也一样会被自动处理。
 - 这个 [`sqlmigrate`](https://docs.djangoproject.com/zh-hans/2.1/ref/django-admin/#django-admin-sqlmigrate) 命令并没有真正在你的数据库中的执行迁移 - 它只是把命令输出到屏幕上，让你看看 Django 认为需要执行哪些 SQL 语句。这在你想看看 Django 到底准备做什么，或者当你是数据库管理员，需要写脚本来批量处理数据库时会很有用。
 
-如果你感兴趣，你也可以试试运行 [`python manage.py check`](https://docs.djangoproject.com/zh-hans/2.1/ref/django-admin/#django-admin-check) ;这个命令帮助你检查项目中的问题，并且在检查过程中不会对数据库进行任何操作。
+   python manage.py check这个命令帮助你检查项目中的问题，并且在检查过程中不会对数据库进行任何操作。
 
 现在，再次运行 [`migrate`](https://docs.djangoproject.com/zh-hans/2.1/ref/django-admin/#django-admin-migrate) 命令，在数据库里创建新定义的模型的数据表：
 
 ```
 python manage.py migrate
+```
+
+Django 的API，方便调试
+
+```
+$ python manage.py shell
+```
+
+```python
+>>> from polls.models import Choice, Question  # Import the model classes we just wrote.
+
+# No questions are in the system yet.
+>>> Question.objects.all()
+<QuerySet []>
+
+# Create a new Question.
+# Support for time zones is enabled in the default settings file, so
+# Django expects a datetime with tzinfo for pub_date. Use timezone.now()
+# instead of datetime.datetime.now() and it will do the right thing.
+>>> from django.utils import timezone
+>>> q = Question(question_text="What's new?", pub_date=timezone.now())
+
+# Save the object into the database. You have to call save() explicitly.
+>>> q.save()
+
+# Now it has an ID.
+>>> q.id
+1
+
+# Access model field values via Python attributes.
+>>> q.question_text
+"What's new?"
+>>> q.pub_date
+datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=<UTC>)
+
+# Change values by changing the attributes, then calling save().
+>>> q.question_text = "What's up?"
+>>> q.save()
+
+# objects.all() displays all the questions in the database.
+>>> Question.objects.all()
+<QuerySet [<Question: Question object (1)>]>
+```
+
+可以通过重写\__str__方法来让Question.objects.all()返回想要的字段,不仅调试方便，在admin后台也用这个方法表示对象
+
+```python
+# polls/models.py
+from django.db import models
+
+class Question(models.Model):
+    # ...
+    def __str__(self):
+        return self.question_text
+
+class Choice(models.Model):
+    # ...
+    def __str__(self):
+        return self.choice_text
+```
+
+#### 六、后台注册models模型，使数据可视化
+
+`Question` 对象需要被管理。打开 `polls/admin.py` 文件，把它编辑成下面这样：
+
+```python
+# polls/admin.py
+from django.contrib import admin
+from .models import Banner, Category, Tag, Tui, Article, Link
+# 导入需要管理的数据库表
+@admin.register(Article)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ['id', 'category', 'title', 'tui', 'user', 'views', 'created_time']
+    # 文章列表里显示想要显示的字段
+    list_per_page = 50
+    # 满50条数据就自动分页
+    ordering = ('-created_time',)
+    # 后台数据列表排序方式
+    list_display_links = ('id', 'title')
+    # 设置哪些字段可以点击进入编辑界面
+```
+
+#### 七、带参数的url映射
+
+现在让我们向 `polls/views.py` 里添加更多视图。这些视图有一些不同，因为他们接收参数：
+
+```python
+# polls/views.py
+def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
+
+def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+
+def vote(request, question_id):
+    return HttpResponse("You're voting on question %s." % question_id)
+```
+
+把这些新视图添加进 `polls.urls` 模块里，只要添加几个 [`url()`](https://docs.djangoproject.com/zh-hans/2.1/ref/urls/#django.conf.urls.url) 函数调用就行：
+
+```python
+# polls/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    # ex: /polls/
+    path('', views.index, name='index'),
+    # ex: /polls/5/
+    path('<int:question_id>/', views.detail, name='detail'),
+    # ex: /polls/5/results/
+    path('<int:question_id>/results/', views.results, name='results'),
+    # ex: /polls/5/vote/
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
 ```
 
