@@ -1,9 +1,13 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+
 from django.db import models
 from DjangoUeditor.models import UEditorField
 
 
 # 文章分类
+from user.models import MyUser
+
+
 class Category(models.Model):
     name = models.CharField('博客分类', max_length=100)
     index = models.IntegerField(default=1, verbose_name='分类排序')
@@ -49,7 +53,7 @@ class Article(models.Model):
     img = models.ImageField(upload_to='article_img/%Y/%m/%d/', verbose_name='文章图片', blank=True, null=True)
     # body = models.TextField()
     body = UEditorField('内容', width=800, height=500, toolbars="full", imagePath="upimg/", filePath="upfile/", upload_settings={"imageMaxSize": 1204000}, settings={}, command=None, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='作者')
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, verbose_name='作者')
     views = models.PositiveIntegerField('阅读量', default=100)
     tui = models.ForeignKey(Tui, on_delete=models.DO_NOTHING, verbose_name='推荐位', blank=True, null=True)
     created_time = models.DateTimeField('发布时间', auto_now_add=True)

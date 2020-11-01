@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from user.models import BadmintonActivity
 from .models import Banner, Category, Tag, Tui, Article, Link
 # 导入需要管理的数据库表
 

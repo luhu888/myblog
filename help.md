@@ -28,13 +28,6 @@ rpm -e --nodeps mysql　　// 强力删除模式，如果使用上面命令删�
 ```
 wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
 rpm -ivh mysql-community-release-el7-5.noarch.rpm
-yum update
-yum install mysql-server
-```
-
-```
-wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
-rpm -ivh mysql-community-release-el7-5.noarch.rpm
 yum update  # 查看到需要安装的软件，输入n，不必全部安装
 yum install mysql-server
 ```
@@ -118,7 +111,7 @@ python manage.py createsuperuser
 python manage.py runsever 127.0.0.1:8005
 STATIC_ROOT = os.path.join(BASE_DIR,'static')  # settings中添加，用于存放后台的静态资源
 python manage.py collectstatic  # 将静态资源拷过来
-yum install -y gcc* pcre-devel openssl-devel
+yum install -y gcc* pcre-devel openssl-devel  装nginx也需要这个
 yum search python3-devel
 yum install python3-devel.x86_64
 pip3 install uwsgi（上面3个yum为安装uwsgi的编译工具）
@@ -149,12 +142,12 @@ http {
         location / {
            include uwsgi_params;
            uwsgi_pass 127.0.0.1:8001;
-           uwsgi_param UWSGI_SCRIPT mysite.wsgi;
-           uwsgi_param UWSGI_CHDIR /data/wwwroot/mysite;
+           uwsgi_param UWSGI_SCRIPT /opt/project/myblog/myblog/wsgi.py;
+           uwsgi_param UWSGI_CHDIR /opt/project/myblog/myblog;
            
         }
         location /static/ {
-        alias data/wwwroot/mysite/static/; 
+        alias /opt/project/myblog/static/;
         }
     }
 }
@@ -229,3 +222,4 @@ scp -r D:\Users\hulu\PycharmProjects\myblog-master\mysite.ini root@182.92.120.14
 将本地文件传到服务器上
 ```
 
+\# user/admin.py from django.contrib import admin from .models import MyUser from django.contrib.auth.admin import UserAdmin from django.utils.translation import gettext_lazy as _ @admin.register(MyUser) class MyUserAdmin(UserAdmin): list_display = ['username','email','mobile','qq','weChat'] # 新增用户时，在个人信息里添加'mobile','qq','weChat'的信息录入 # 将源码的UserAdmin.fieldsets转换成列表格式 fieldsets = list(UserAdmin.fieldsets) # 重写UserAdmin的fieldsets，添加'mobile','qq','weChat'的信息录入 fieldsets[1] = (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'mobile', 'qq', 'weChat')}) 
