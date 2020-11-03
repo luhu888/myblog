@@ -12,7 +12,8 @@ class MyUser(AbstractUser):
 
 class BadmintonActivity(models.Model):
     activity_name = models.CharField('活动名称', max_length=100)
-    activity_time = models.DateTimeField('活动时间', default=timezone.now)
+    activity_start_time = models.DateTimeField('开始时间', default=timezone.now)
+    activity_end_time = models.DateTimeField('结束时间', default=timezone.now)
     activity_number = models.IntegerField('活动编号', auto_created=True)
     is_alive = models.BooleanField('是否结束', default=False)
 
