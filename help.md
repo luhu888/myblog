@@ -105,6 +105,8 @@ python manage.py makemigrations
 python manage.py makemigrations blog
 没有生成对应表可以在后面加应用名
 python manage.py migrate
+delete from django_migrations where app='user';
+修改model后migrate没有自动修改对应表的字段，删除migrations中app记录，以及admin记录
 python manage.py createsuperuser
 /opt/env_list/env_myblog/lib/python3.6/site-packages/django/forms/boundfield.py", line 93,
 注释掉虚拟环境中Django的93行
@@ -212,7 +214,11 @@ threads = 2
 stats = 127.0.0.1:9191
 netstat -anp |grep 8001
 sudo kill -9 17590   # 查看占用端口并解除占用
+fuser -k 8001/tcp   # 强杀端口相关进程
 uwsgi -d --ini /opt/project/myblog/mysite.ini
+修改代码同步到服务器需要将uwsgi进程杀掉重启，否则代码无法及时更新
+killall -9 uwsgi
+
 
 GRANT ALL PRIVILEGES ON *.* TO 用户@"%" IDENTIFIED BY "密码";
 flush privileges;
@@ -222,4 +228,3 @@ scp -r D:\Users\hulu\PycharmProjects\myblog-master\mysite.ini root@182.92.120.14
 将本地文件传到服务器上
 ```
 
-\# user/admin.py from django.contrib import admin from .models import MyUser from django.contrib.auth.admin import UserAdmin from django.utils.translation import gettext_lazy as _ @admin.register(MyUser) class MyUserAdmin(UserAdmin): list_display = ['username','email','mobile','qq','weChat'] # 新增用户时，在个人信息里添加'mobile','qq','weChat'的信息录入 # 将源码的UserAdmin.fieldsets转换成列表格式 fieldsets = list(UserAdmin.fieldsets) # 重写UserAdmin的fieldsets，添加'mobile','qq','weChat'的信息录入 fieldsets[1] = (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'mobile', 'qq', 'weChat')}) 

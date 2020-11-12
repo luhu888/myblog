@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MyBlog</title>
+    <title>所有活动</title>
 </head>
 
-    <header id="top"> <!-- 内容显示区域 ：width : 1211px -->
+
+
+    <body>
+   <header id="top"> <!-- 内容显示区域 ：width : 1211px -->
         <div id="top_box">
 
             <ul class="rt"> {% if username %}
@@ -16,25 +19,30 @@
                 <li><a href="{% url 'register' %}">注册</a></li>
                 {% endif %}
             </ul>
-            <ul class="lf">
-                <li><a href="#">本周活动</a></li>
-                <li><a href="#">活动详情</a></li>
-            </ul>
         </div>
     </header>
 
+<div>
+    <h4>所有活动：</h4>
+    {% if username %}
+        <table border="1" height="100" width="300" cellspacing="0" align="left">
+        <tr align="center">
+            <td>活动编号</td>
+            <td>活动时间</td>
+        </tr>
+        {% for i in activity %}
+        <tr align="center">
+            <td><a href="/new_user/activity/{{ i.id }}.html">{{ i.activity_name }}</a></td>
+            <td>{{ i.activity_start_time}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <div>未登录，请登录后查看详情</div>
+    {% endif %}
 
-    <!--<body>-->
+</div>
 
-<!--<div>-->
-    <!--<ul>-->
-    <!--<h4>所有文章：</h4>-->
-        <!--{% for article in allarticle  %}-->
-        <!--<li>{{ article.title }}</li>-->
-        <!--{% endfor %}-->
-    <!--</ul>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--</body>-->
+</div>
+</body>
 </html>

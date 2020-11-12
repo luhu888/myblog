@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # 添加一个函数
 from django.shortcuts import render
-
+from new_user.models import BadmintonActivity, BadmintonActivityDetails
 from blog.models import Article
 
 
@@ -40,26 +40,9 @@ def index1(request):
 
 def index(request):
     username = request.user.username
+    activity = BadmintonActivity.objects.filter(is_alive=False)
+    context = {
+        'activity': activity,
+    }
     return render(request, 'index.html', locals())
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # # 对Article进行声明并实例化，然后生成对象allarticle
-    # allarticle = Article.objects.all()
-    # # 把查询到的对象，封装到上下文
-    # context = {
-    #     'allarticle': allarticle,
-    # }
-    # # 把上传文传到模板页面index.html里
-    # return render(request, 'index.html', context)

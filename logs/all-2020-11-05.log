@@ -1,0 +1,340 @@
+[2020-11-05 19:51:14,815] [log.py:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+[2020-11-05 20:40:05,356] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 442, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/urls/base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/urls/resolvers.py", line 622, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'i.id' not found. 'i.id' is not a valid view function or pattern name.
+[2020-11-05 20:41:40,429] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 449, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 663, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ', i.activity_name' from 'i.id, i.activity_name'
+[2020-11-05 20:41:42,815] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 449, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 663, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: ', i.activity_name' from 'i.id, i.activity_name'
+[2020-11-05 20:43:28,824] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'url+i.id'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 528, in invalid_block_tag
+    get_text_list(["'%s'" % p for p in parse_until], 'or'),
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 34: 'url+i.id', expected 'empty' or 'endfor'. Did you forget to register or load this tag?
+[2020-11-05 20:44:05,384] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 442, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/urls/base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/urls/resolvers.py", line 622, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'i.id' not found. 'i.id' is not a valid view function or pattern name.
+[2020-11-05 20:44:45,324] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 1357, in url
+    raise TemplateSyntaxError("'%s' takes at least one argument, a URL pattern name." % bits[0])
+django.template.exceptions.TemplateSyntaxError: 'url' takes at least one argument, a URL pattern name.
+[2020-11-05 20:45:11,762] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 1357, in url
+    raise TemplateSyntaxError("'%s' takes at least one argument, a URL pattern name." % bits[0])
+django.template.exceptions.TemplateSyntaxError: 'url' takes at least one argument, a URL pattern name.
+[2020-11-05 20:45:13,739] [log.py:228] [log:log_response] [ERROR]- Internal Server Error: /
+Traceback (most recent call last):
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./blog/views.py", line 47, in index
+    return render(request, 'index.html', locals())
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/backends/django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/loaders/base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 156, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 194, in compile_nodelist
+    return parser.parse()
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 810, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 478, in parse
+    raise self.error(token, e)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "/opt/env_list/env_myblog/lib/python3.6/site-packages/django/template/defaulttags.py", line 1357, in url
+    raise TemplateSyntaxError("'%s' takes at least one argument, a URL pattern name." % bits[0])
+django.template.exceptions.TemplateSyntaxError: 'url' takes at least one argument, a URL pattern name.
+[2020-11-05 20:47:52,438] [log.py:228] [log:log_response] [WARNING]- Not Found: /cache/global/img/gs.gif
+[2020-11-05 21:53:20,400] [log.py:228] [log:log_response] [WARNING]- Not Found: /echo.php
+[2020-11-05 22:09:58,723] [log.py:228] [log:log_response] [WARNING]- Not Found: /index.php
+[2020-11-05 22:10:04,346] [log.py:228] [log:log_response] [WARNING]- Not Found: /phpmyadmin/index.php
+[2020-11-05 23:09:19,910] [log.py:228] [log:log_response] [WARNING]- Not Found: /portal/redlion
+[2020-11-05 23:19:02,993] [log.py:228] [log:log_response] [WARNING]- Not Found: /.env
+[2020-11-05 23:19:04,906] [log.py:228] [log:log_response] [WARNING]- Forbidden (CSRF cookie not set.): /
+[2020-11-06 01:34:52,364] [log.py:228] [log:log_response] [WARNING]- Not Found: /goform/setUsbUnload/
+[2020-11-06 02:55:06,677] [log.py:228] [log:log_response] [WARNING]- Not Found: /config/getuser
+[2020-11-06 05:24:12,045] [log.py:228] [log:log_response] [WARNING]- Not Found: /boaform/admin/formLogin
+[2020-11-06 06:26:06,478] [log.py:228] [log:log_response] [WARNING]- Not Found: /cache/global/img/gs.gif
+[2020-11-06 07:40:03,511] [log.py:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+[2020-11-06 08:52:01,215] [log.py:228] [log:log_response] [WARNING]- Not Found: /currentsetting.htm
+[2020-11-06 10:05:19,969] [log.py:228] [log:log_response] [WARNING]- Not Found: /favicon.ico

@@ -27,7 +27,7 @@ urlpatterns = [
     path('ueditor/', include('DjangoUeditor.urls')),  # 添加DjangoUeditor的URL
     re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),    # 增加此行
     path('', views.index),  # 里面留空，代表首页
-    path('user/', include('user.urls'))
+    path('new_user/', include('new_user.urls'))
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs
