@@ -25,11 +25,8 @@ class MyUserAdmin(UserAdmin):
 
 @admin.register(BadmintonActivity)
 class BadmintonActivityAdmin(admin.ModelAdmin):
-<<<<<<< HEAD:new_user/admin.py
-    list_display = ['activity_number', 'activity_start_time', 'activity_end_time', 'is_alive']
-=======
     list_display = ['activity_number', 'activity_name', 'activity_start_time', 'activity_end_time', 'is_alive']
->>>>>>> be3e2b019a706337e2f5d92ff18d71ee31c4b434:user/admin.py
+
 
 
 @admin.register(BadmintonActivityDetails)
