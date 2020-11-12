@@ -462,3 +462,4 @@ AttributeError: 'MyUser' object has no attribute 'values_list'
 [2020-11-12 10:31:36,586] [log.py:228] [log:log_response] [WARNING]- Not Found: /currentsetting.htm
 [2020-11-12 10:56:54,389] [log.py:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
 [2020-11-12 11:38:25,987] [log.py:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
+[2020-11-12 12:18:51,351] [log.py:228] [log:log_response] [WARNING]- Not Found: /favicon.ico
