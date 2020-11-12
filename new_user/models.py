@@ -11,13 +11,6 @@ class MyUser(AbstractUser):
     def __str__(self):
         return self.username
 
-#
-# class UserManager(_UserManager):
-#     def create_superuser(self, username, password, weChat, **extra_fields):
-#         extra_fields.setdefault('is_staff', False)
-#         extra_fields.setdefault('is_superuser', False)
-#         return super().create_user(username=username, password=password, weChat=weChat, **extra_fields)
-
 
 class BadmintonActivity(models.Model):
     activity_number = models.IntegerField('活动编号', auto_created=True)

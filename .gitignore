@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+__pycache__
+**/__pycache__
+*.pyc
+migrations
+logs
+.idea
+--ini
+=======
 __pycache__
 **/__pycache__
 *.pyc
@@ -6,3 +15,4 @@ logs
 .idea
 --ini
 myblog.ini
+>>>>>>> master

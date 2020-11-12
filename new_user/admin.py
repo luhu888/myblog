@@ -32,7 +32,3 @@ class BadmintonActivityAdmin(admin.ModelAdmin):
 class BadmintonActivityDetailsAdmin(admin.ModelAdmin):
     list_display = ['activity_number', 'join_weChat']
 
-#
-# @admin.register(BadmintonActivityJoin)
-# class BadmintonActivityJoinAdmin(admin.ModelAdmin):
-#     list_display = ['activity_number', 'join_weChat']
