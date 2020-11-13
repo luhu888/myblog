@@ -1,40 +1,238 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-    <head> <meta charset="utf-8">
-        <title>{{ title }}</title>
-        <link rel="stylesheet" href="https://unpkg.com/mobi.css/dist/mobi.min.css">
-    </head>
-    <body>
-        <div class="flex-center">
-            <div class="container">
-                <div class="flex-center">
-                    <div class="unit-1-2 unit-1-on-mobile">
-                    <h1>小羽毛报名系统</h1>
-                    {% if tips %}
-                        <div>{{ tips }}</div>
-                    {% endif %}
-                    <form class="form" action="" method="post">
-                    {% csrf_token %}
-                        <div>用户名:<input type="text" name='username'></div>
-                        {% if title == '注册' %}
-                        <div>微信号:<input type="text" name='weChat'></div>
-                        {% endif %}
-                        <div>密 码:<input type="password" name='password'></div>
-                        {% if new_password %}
-                        <div>新密码:<input type="password" name='new_password'></div>
-                        {% endif %}
-                        <button type="submit" class="btn btn-primary btn-block">确定</button>
-                        </form>
-                        <div class="flex-left top-gap text-small">
-                        <div class="unit-2-3"> <a href="{{ unit_2 }}">{{ unit_2_name }}</a>
-                        </div>
-                            <div class="unit-1-3 flex-right">
-                        <a href="{{ unit_1 }}">{{ unit_1_name }}</a>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/mobi.css/dist/mobi.min.css">
+    <style>
+        /* 初始化style*/
+        * {
+            margin: 0 auto;
+            /*padding: 0 auto;*/
+            box-sizing: border-box;
+        }
+
+        input {
+            outline: none;
+            border: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        ul {
+            padding-inline-start: 0;
+        }
+
+        button:focus {
+            border: 0 none;
+            outline: none;
+        }
+
+
+        /*login的style*/
+        body {
+            background-color: rgb(247, 247, 247);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            margin-top: 60px;
+            height: 128px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        header h1 {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            font-size: 38px;
+            /*color:rgb(119, 133, 120);*/
+        }
+@media(max-width:600px){
+    header{
+        margin-top: 40px;
+        height: 110px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    header h1{
+        font-size: 26px;
+    }
+}
+        main {
+            max-width: 1200px;
+            position: relative;
+        }
+
+        main section {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 480px;
+            padding: 40px;
+            background-color: #fff;
+            font-size: 18px;
+        }
+        main section p {
+            position: absolute;
+            height: 18px;
+            font-size: 18px;
+            top: -50px;
+            left: 40px;
+        }
+        main section h3 {
+            font-size: 26px;
+            height: 27px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        @media(max-width:600px){
+            main section{
+                padding: 20px;
+                font-size: 16px;
+            }
+            main section p {
+                height: 14px;
+                font-size: 14px;
+                left: 20px;
+            }
+            main section h3 {
+                font-size: 20px;
+            }
+        }
+        main section form {
+            width: 400px;
+        }
+        main section span {
+            display: block;
+            margin-top: 4px;
+            margin-bottom: 8px;
+        }
+        main section input, .submit {
+            width: 400px;
+            height: 36px;
+            border: 1px solid rgb(174, 191, 207);
+            border-radius: 4px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        main section .submit {
+            margin-top: 16px;
+            background-color: rgb(164, 185, 202);
+        }
+        main section .otherLinks{
+            position: relative;
+            width: 400px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        main section div .link {
+            position: absolute;
+            display: inline-block;
+            width: 200px;
+            left:0 ;
+            top: 0;
+            text-align: center;
+            font-size:16px;
+            color: rgba(119, 133, 120,1.5);
+        }
+        main section div a.right{
+            left: 200px;
+        }
+        @media(max-width:600px){
+            main section form {
+                width: 300px;
+            }
+            main section input, .submit {
+                width: 300px;
+                height: 24px;
+                font-size: 16px;
+            }
+            main section .otherLinks{
+                width: 300px;
+                margin-bottom: 10px;
+            }
+            main section div .link {
+                display: inline-block;
+                width: 120px;
+                left:25px;
+                top: 0;
+                text-align: center;
+                font-size:14px;
+                font-weight: 700;
+                color: rgba(119, 133, 120,1.5);
+            }
+            main section div a.right{
+                left: 150px;
+            }
+        }
+        main section .gif {
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+            background-color: rgba(180, 185, 165, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1>小羽毛报名系统</h1>
+
+</header>
+<main>
+    <section>
+        {% if tips %}
+        <p class="tips">{{ tips }}</p>
+        {% endif %}
+        <!--        <div class="gif">-->
+        <!--            占位子-->
+        <!--        </div>-->
+        <form class="form" action="" method="post">
+            <h3>{% csrf_token %}</h3>
+            <label>
+                <span>用户名:</span>
+                <input type="text" name='username'>
+            </label>
+            {% if title == '注册' %}
+            <label>
+                <span>微信号:</span>
+                <input type="text" name='weChat'>
+            </label>
+            {% endif %}
+            <label>
+                <span>密码:</span>
+                <input type="password" name='password'>
+            </label>
+            {% if new_password %}
+            <label>
+                <span>新密码:</span>
+                <input type="password" name='new_password'>
+            </label>
+            {% endif %}
+            <button type="submit" class="submit" class="submit">确定</button>
+        </form>
+        <div class="otherLinks">
+           <a class="link left" href="{{ unit_2 }}">{{ unit_2_name }}</a>
+           <a class="link right" href="{{ unit_1 }}">{{ unit_1_name }}</a>
         </div>
-    </body>
+    </section>
+</main>
+</body>
 </html>
