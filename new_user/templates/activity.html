@@ -10,17 +10,20 @@
     <body>
    <header id="top"> <!-- 内容显示区域 ：width : 1211px -->
         <div id="top_box">
-            <ul class="rt"> {% if username %}
+            <ul class="rt">
+                {% if username %}
                 <li>用户名: {{ username }}</li>
                 <li><a href="{% url 'logout' %}">退出登录</a></li>
                  </ul>
             <h3 align="left">活动详情</h3>
-    <table border="1" height="100" width="300" cellspacing="0" align="left">
+            <table border="1" height="100" width="300" cellspacing="0" align="left">
         <tr align="center">
             <td>报名人员</td>
+            <td>是否替补</td>
         </tr>
-        {% for value in user_info %}
+        {% for key, value in new_join_dic.items %}
         <tr align="center">
+            <td>{{ key }}</td>
             <td>{{ value }}</td>
         </tr>
         {% endfor %}
@@ -29,21 +32,29 @@
         </div><br>
        <br><br><br><br>
       <form class="form" action="" method="post">
-          {% csrf_token %}
-                        <input type="hidden" name="join" value=1>
-                        <button name="join" type="submit">报名</button>
+      {% csrf_token %}
+          {% if not is_join and not is_full %}
+          <input type="hidden" name='join' value="join">
+        <button name="bt_join" type="submit">报名</button>
+          {% elif is_join %}
+            <input type="hidden" name='cancel' value="cancel">
+            <button name="bt_cancel" type="submit">取消报名</button>
+          {% elif not is_join and is_full  %}
+            <input type="hidden" name='substitution' value="substitution">
+            <button name="bt_substitution" type="submit">报名替补</button>
+          {% endif %}
       </form>
-                {% else %}
+
+          {% else %}
+            <ul>
                 <li><a href="{% url 'login' %}">登录</a></li>
-                <li><a href="{% url 'register' %}">注册</a></li>
-                {% endif %}
+                <li><a href="{% url 'register' %}">注册</a></li>{% endif %}
             </ul>
-            {% if txt %}<div>{{ txt }}</div>
-            {% endif %}
+
+            {% if txt %}<div>{{ txt }}</div>{% endif %}
+
 
     </header>
 
-
-</div>
 </body>
 </html>

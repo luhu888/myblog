@@ -184,7 +184,7 @@ LOGGING = {
         },
         # 控制台输出
         'console': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'standard'
         },
@@ -204,7 +204,7 @@ LOGGING = {
         # 类型 为 django 处理所有类型的日志， 默认调用
         'django': {
             'handlers': ['default', 'console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True
         },
         # log 调用时需要当作参数传入
