@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import time
-
+import logging
+import django.utils.log
+import logging.handlers
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -202,13 +204,13 @@ LOGGING = {
         # 类型 为 django 处理所有类型的日志， 默认调用
         'django': {
             'handlers': ['default', 'console'],
-            'level': 'INFO',
-            'propagate': False
+            'level': 'DEBUG',
+            'propagate': True
         },
         # log 调用时需要当作参数传入
         'log': {
             'handlers': ['error', 'info', 'console', 'default'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': True
         },
     }

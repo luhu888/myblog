@@ -28,13 +28,18 @@
 
         </div><br>
        <br><br><br><br>
-       <button>报名</button>
+      <form class="form" action="" method="post">
+          {% csrf_token %}
+                        <input type="hidden" name="join" value=1>
+                        <button name="join" type="submit">报名</button>
+      </form>
                 {% else %}
                 <li><a href="{% url 'login' %}">登录</a></li>
                 <li><a href="{% url 'register' %}">注册</a></li>
                 {% endif %}
             </ul>
-
+            {% if txt %}<div>{{ txt }}</div>
+            {% endif %}
 
     </header>
 

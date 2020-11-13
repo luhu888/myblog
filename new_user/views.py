@@ -1,11 +1,13 @@
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from new_user.models import MyUser as User  # 扩展user后使用新的MyUser
-from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
+from new_user.models import BadmintonActivity, BadmintonActivityDetails
 from django.contrib.auth import login, logout, authenticate
 import logging
 from django import forms
 from django.forms import widgets
+import logging
+logger = logging.getLogger(__name__)
 
 
 class UserForm(forms.Form):
@@ -95,15 +97,26 @@ def logoutView(request):
 def activityView(request, number):
     username = request.user.username
     activityDetails = BadmintonActivityDetails.objects.filter(activity_number_id=int(number))
+    print(request.user)
     # BadmintonActivity.objects.values(fk=int(number))
     user_info = []
     for i in activityDetails:
         # key = BadmintonActivity.objects.get(id=int(number))
-        value = MyUser.objects.filter(id=i.join_weChat_id).values_list('weChat')[0][0]
+        value = User.objects.filter(id=i.join_weChat_id).values_list('weChat')[0][0]
         # value = 'rr'
         user_info.append(value)
+
+    is_join = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id)
+    join = request.POST.get("join", '')
+    logger.info('join的值为',join)
+    if bool(is_join):
+        txt = '您已成功报名，请勿重复报名'
+    elif join == 1:
+        join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
+        join_person.save()
     context = {
         'activity': activityDetails,
         'user_info': user_info
     }
     return render(request, 'activity.html', locals())
+

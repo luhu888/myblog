@@ -11,17 +11,11 @@ class MyUser(AbstractUser):
     def __str__(self):
         return self.username
 
-#
-# class UserManager(_UserManager):
-#     def create_superuser(self, username, password, weChat, **extra_fields):
-#         extra_fields.setdefault('is_staff', False)
-#         extra_fields.setdefault('is_superuser', False)
-#         return super().create_user(username=username, password=password, weChat=weChat, **extra_fields)
-
 
 class BadmintonActivity(models.Model):
     activity_number = models.IntegerField('活动编号', auto_created=True)
     activity_name = models.CharField('活动名称', max_length=100)
+    activity_place = models.CharField('活动地址', max_length=100, default='')
     activity_start_time = models.DateTimeField('开始时间', default=timezone.now)
     activity_end_time = models.DateTimeField('结束时间', default=timezone.now)
     is_alive = models.BooleanField('是否结束', default=False)
