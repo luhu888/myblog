@@ -4,6 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>活动详情</title>
+    <script type="text/javascript">
+            let isCommitted = false;//表单是否已经提交标识，默认为false
+            function dosubmit(){
+              if(isCommitted===false){
+                isCommitted = true;//提交表单后，将表单是否已经提交标识设置为true
+                return true;//返回true让表单正常提交
+             }else{
+                 return false;//返回false那么表单将不提交
+             }
+         }
+        </script>
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 </head>
 
@@ -33,20 +44,22 @@
 
         </div><br>
        <br><br><br><br><br><br>
+
       <form class="form" action="" method="post">
+
       {% csrf_token %}
           {% if not is_join and not is_full %}
           <input type="hidden" name='join' value="join">
-        <button name="bt_join" type="submit">报名</button>
+            <input type="submit" value="报名">
           {% elif is_join %}
             <input type="hidden" name='cancel' value="cancel">
-            <button name="bt_cancel" type="submit">取消报名</button>
+            <input type="submit" value="取消报名">
           {% elif not is_join and is_full and not is_substitution %}
             <input type="hidden" name='substitution' value="substitution">
-            <button name="bt_substitution" type="submit">报名替补</button>
+            <input type="submit" value="报名替补">
           {% elif is_substitution %}
-              <input type="hidden" name='cancel_substitution' value="cancel_substitution">
-            <button name="bt_cancel_substitution" type="submit">取消替补</button>
+            <input type="hidden" name='cancel_substitution' value="cancel_substitution">
+            <input type="submit" value="取消替补">
           {% endif %}
       </form>
 
