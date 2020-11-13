@@ -25,21 +25,41 @@
 <div>
     <h4>所有活动：</h4>
     {% if username %}
-        <table border="1" height="100" width="400" cellspacing="0" align="left">
+        <table border="1" height="100" width="500" cellspacing="0" align="left">
         <tr align="center">
             <td>活动编号</td>
             <td>活动时间</td>
             <td>活动地点</td>
+            <td>是否订满</td>
+
         </tr>
         {% for i in activity %}
         <tr align="center">
             <td><a href="/new_user/activity/{{ i.id }}.html">{{ i.activity_name }}</a></td>
             <td>{{ i.activity_start_time}}</td>
             <td>{{ i.activity_place}}</td>
+            <td>{{ i.is_full}}</td>
         </tr>
         {% endfor %}
     </table>
     {% else %}
+    <table border="1" height="100" width="500" cellspacing="0" align="left">
+        <tr align="center">
+            <td>活动编号</td>
+            <td>活动时间</td>
+            <td>活动地点</td>
+            <td>是否订满</td>
+
+        </tr>
+        {% for i in activity %}
+        <tr align="center">
+            <td>{{ i.activity_name }}</td>
+            <td>{{ i.activity_start_time}}</td>
+            <td>{{ i.activity_place}}</td>
+            <td>{{ i.is_full}}</td>
+        </tr>
+        {% endfor %}
+    </table><br><br><br><br><br><br>
     <div>未登录，请登录后查看详情</div>
     {% endif %}
 

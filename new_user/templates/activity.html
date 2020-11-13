@@ -30,7 +30,7 @@
     </table>
 
         </div><br>
-       <br><br><br><br>
+       <br><br><br><br><br><br>
       <form class="form" action="" method="post">
       {% csrf_token %}
           {% if not is_join and not is_full %}
@@ -39,9 +39,12 @@
           {% elif is_join %}
             <input type="hidden" name='cancel' value="cancel">
             <button name="bt_cancel" type="submit">取消报名</button>
-          {% elif not is_join and is_full  %}
+          {% elif not is_join and is_full and not is_substitution %}
             <input type="hidden" name='substitution' value="substitution">
             <button name="bt_substitution" type="submit">报名替补</button>
+          {% elif is_substitution %}
+              <input type="hidden" name='cancel_substitution' value="cancel_substitution">
+            <button name="bt_cancel_substitution" type="submit">取消替补</button>
           {% endif %}
       </form>
 

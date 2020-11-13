@@ -20,6 +20,7 @@ class BadmintonActivity(models.Model):
     is_alive = models.BooleanField('是否结束', default=False)
     is_full = models.BooleanField('是否订满', default=False)
     limit_count = models.IntegerField('人数限制', default=100)
+    activity_place = models.CharField('活动地点', max_length=100, default='')
 
     class Meta:
         verbose_name = '活动列表'
@@ -35,7 +36,7 @@ class BadmintonActivityDetails(models.Model):
     is_substitution = models.BooleanField(verbose_name='是否替补', default=False)
 
     class Meta:
-        unique_together = ('activity_number', 'join_weChat',)   # 多个字段联合唯一约束
+        unique_together = ('activity_number', 'join_weChat', 'is_substitution')   # 多个字段联合唯一约束
         verbose_name = '活动详情'
         verbose_name_plural = verbose_name
 
