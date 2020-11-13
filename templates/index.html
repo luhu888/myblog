@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>所有活动</title>
-<<<<<<< HEAD
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-</head>
-=======
     <style>
         /* 初始化style*/
         * {
@@ -88,7 +83,6 @@
                 height: 60px;
                 margin-bottom: 10px;
             }
->>>>>>> master
 
             header ul {
                 line-height: 60px;
@@ -188,23 +182,6 @@
 <main>
     <h3>所有活动</h3>
     {% if username %}
-<<<<<<< HEAD
-        <table border="1" height="100" width="500" cellspacing="0" align="left">
-        <tr align="center">
-            <td>活动编号</td>
-            <td>活动时间</td>
-            <td>活动地点</td>
-            <td>是否订满</td>
-
-        </tr>
-        {% for i in activity %}
-        <tr align="center">
-            <td><a href="/new_user/activity/{{ i.id }}.html">{{ i.activity_name }}</a></td>
-            <td>{{ i.activity_start_time}}</td>
-            <td>{{ i.activity_place}}</td>
-            <td>{{ i.is_full}}</td>
-        </tr>
-=======
     <ul>
         {% for i in activity %}
         <li>
@@ -213,31 +190,9 @@
             <p>{{ i.activity_place}}</p>
             <p>{{ i.is_full}}</p>
         </li>
->>>>>>> master
         {% endfor %}
     </ul>
     {% else %}
-<<<<<<< HEAD
-    <table border="1" height="100" width="500" cellspacing="0" align="left">
-        <tr align="center">
-            <td>活动编号</td>
-            <td>活动时间</td>
-            <td>活动地点</td>
-            <td>是否订满</td>
-
-        </tr>
-        {% for i in activity %}
-        <tr align="center">
-            <td>{{ i.activity_name }}</td>
-            <td>{{ i.activity_start_time}}</td>
-            <td>{{ i.activity_place}}</td>
-            <td>{{ i.is_full}}</td>
-        </tr>
-        {% endfor %}
-    </table><br><br><br><br><br><br>
-    <div>未登录，请登录后查看详情</div>
-    {% endif %}
-=======
     <ul>
         {% for i in activity %}
         <li>
@@ -250,7 +205,6 @@
     </ul>
         <p class="tips">未登录，点击左上角登录后可查看活动详情</p>
         {% endif %}
->>>>>>> master
 
 </main>
 
