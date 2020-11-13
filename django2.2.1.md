@@ -140,6 +140,10 @@ $ python manage.py migrate
 ```
 
 这个 [`migrate`](https://docs.djangoproject.com/zh-hans/2.1/ref/django-admin/#django-admin-migrate) 命令检查 [`INSTALLED_APPS`](https://docs.djangoproject.com/zh-hans/2.1/ref/settings/#std:setting-INSTALLED_APPS) 设置，为其中的每个应用创建需要的数据表
+修改源生user结构后需要单独迁移数据库
+python manage.py makemigrations new_user
+python manage.py migrate new_user
+如果报错表结构已存在，使用python manage.py migrate appname --fake 将有问题的APP重置下再migrate就好了
 
 #### 四、创建模型
 
