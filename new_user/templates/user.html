@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
@@ -7,9 +7,9 @@
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-    <link rel="stylesheet" type="text/css" href="../../templates/init.css">
-    <link rel="stylesheet" href="../../templates/base.css" type="text/css">
-    <link rel="stylesheet" type="text/css"  href="user.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/init.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css" '%}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/user.css' %}">
 </head>
 <body>
 <header>
