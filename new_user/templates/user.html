@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
@@ -6,6 +7,7 @@
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="https://unpkg.com/mobi.css/dist/mobi.min.css">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <style>
         /* 初始化style*/
         * {
