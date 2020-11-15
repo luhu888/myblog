@@ -4,6 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>活动详情</title>
+    <script type="text/javascript">
+            let isCommitted = false;//表单是否已经提交标识，默认为false
+            function dosubmit(){
+              if(isCommitted===false){
+                isCommitted = true;//提交表单后，将表单是否已经提交标识设置为true
+                return true;//返回true让表单正常提交
+             }else{
+                 return false;//返回false那么表单将不提交
+             }
+         }
+        </script>
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
@@ -22,8 +33,9 @@
             <ul>
                 {% if username %}
                 <li><span><i class="iconfont">&#xe630;</i> 用户: <em id="username">{{ username }}</em></span></li>
-                <li><a href="{% url 'logout' %}">退出登录</a></li>
-                {% else %}
+              <li><a href="{% url 'logout' %}">退出登录</a></li>
+          {% else %}
+            <ul>
                 <li><a href="{% url 'login' %}">登录</a></li>
                 <li><a href="{% url 'register' %}">注册</a></li>
                 {% endif %}

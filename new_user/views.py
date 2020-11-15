@@ -1,4 +1,5 @@
 from django.contrib.auth.hashers import make_password
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from new_user.models import MyUser as User  # 扩展user后使用新的MyUser
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
@@ -138,3 +139,6 @@ def activityView(request, number):
         'user_info': new_join_dic
     }
     return render(request, 'activity.html', locals())
+
+    # return HttpResponseRedirect('%s' % next, locals())
+
