@@ -1,0 +1,138 @@
+header {
+    margin-top: 60px;
+    height: 128px;
+    margin-bottom: 30px;
+    position: relative;
+}
+header h1 {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: 38px;
+    /*color:rgb(119, 133, 120);*/
+}
+@media(max-width:600px){
+    header{
+        margin-top: 30px;
+        height: 76px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    header h1{
+        font-size: 26px;
+    }
+}
+main {
+    max-width: 1200px;
+    position: relative;
+}
+
+main section {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 480px;
+    padding: 40px;
+    background-color: #fff;
+    font-size: 18px;
+}
+
+main section h3 {
+    font-size: 26px;
+    height: 27px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+@media(max-width:600px){
+    main section{
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    main section h3 {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+main section form {
+    width: 400px;
+}
+main section span {
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+main section .form label{
+    margin-top: 10px;
+}
+main section input, .submit {
+    width: 400px;
+    height: 40px;
+    border: 1px solid rgb(174, 191, 207);
+    border-radius: 6px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    font-size: 18px;
+
+}
+
+main section .submit {
+    color: #fff;
+    margin-top: 16px;
+    background-color: rgb(46, 164, 79);
+}
+main section .otherLinks{
+    position: relative;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+main section div .link {
+    position: absolute;
+    display: inline-block;
+    width: 200px;
+    left:0 ;
+    top: 0;
+    text-align: center;
+    font-size:16px;
+    color:rgb(3, 102, 214);
+}
+main section div a.right{
+    left: 200px;
+}
+@media(max-width:600px){
+    main section form {
+        width: 300px;
+    }
+    main section .form label{
+        margin-top: 6px;
+    }
+    main section input, .submit {
+        margin-top: 4px;
+        width: 300px;
+        height: 28px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+    main section .otherLinks{
+        width: 300px;
+        margin-bottom: 10px;
+    }
+    main section div .link {
+        display: inline-block;
+        width: 120px;
+        left:25px;
+        top: 0;
+        text-align: center;
+        font-size:14px;
+        font-weight: 700;
+        color: rgba(119, 133, 120,1.5);
+    }
+    main section div a.right{
+        left: 150px;
+    }
+}
+
