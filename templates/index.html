@@ -18,18 +18,13 @@
 <header id="top"> <!-- 内容显示区域 ：width : 1211px -->
     <div id="top_box" class="user">
         <ul>
+            {% if username %}
             <li><span><i class="iconfont">&#xe630;</i> 用户: {{ username }}</span></li>
             <li><a href="{% url 'logout' %}">退出登录</a></li>
-
-
-
-<!--            {% if username %}-->
-<!--            <li><span><i class="iconfont">&#xe630;</i> 用户: {{ username }}</span></li>-->
-<!--            <li><a href="{% url 'logout' %}">退出登录</a></li>-->
-<!--            {% else %}-->
-<!--            <li><a href="{% url 'login' %}">登录</a></li>-->
-<!--            <li><a href="{% url 'register' %}">注册</a></li>-->
-<!--            {% endif %}-->
+            {% else %}
+            <li><a href="{% url 'login' %}">登录</a></li>
+            <li><a href="{% url 'register' %}">注册</a></li>
+            {% endif %}
         </ul>
     </div>
 </header>

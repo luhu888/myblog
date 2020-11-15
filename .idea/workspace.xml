@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a3e4f40-678b-4f41-8592-e6f47108177d" name="Default" comment="add">
-      <change afterPath="$PROJECT_DIR$/templates/header_index_activity.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/activity.css" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/activity.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/user.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +110,7 @@
       <workItem from="1605014627141" duration="10983000" />
       <workItem from="1605283561135" duration="3006000" />
       <workItem from="1605316220304" duration="1031000" />
-      <workItem from="1605399549315" duration="23512000" />
+      <workItem from="1605399549315" duration="24412000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1603642595253</created>
