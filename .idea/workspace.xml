@@ -41,12 +41,6 @@
     </expand>
     <select />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/body&gt; &lt;/html&gt;</find>
-      <find>new</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,7 +97,9 @@
       <workItem from="1603630497579" duration="27035000" />
       <workItem from="1604417676541" duration="3686000" />
       <workItem from="1605014627141" duration="10983000" />
-      <workItem from="1605283561135" duration="928000" />
+      <workItem from="1605283561135" duration="3006000" />
+      <workItem from="1605316220304" duration="1031000" />
+      <workItem from="1605399549315" duration="7036000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1603642595253</created>
@@ -175,5 +171,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add" />
     <option name="LAST_COMMIT_MESSAGE" value="add" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1558" y="463" key="FileChooserDialogImpl" timestamp="1605324503925">
+      <screen x="0" y="0" width="2560" height="1410" />
+    </state>
+    <state x="1558" y="463" key="FileChooserDialogImpl/0.0.2560.1410@0.0.2560.1410" timestamp="1605324503925" />
   </component>
 </project>
