@@ -1,168 +1,17 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
     <title>所有活动</title>
-    <style>
-        /* 初始化style*/
-        * {
-            margin: 0 auto;
-            /*padding: 0 auto;*/
-            box-sizing: border-box;
-        }
-
-        input {
-            outline: none;
-            border: none;
-        }
-
-        li {
-            list-style: none;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-
-        ul {
-            padding-inline-start: 0;
-        }
-
-        button:focus {
-            border: 0 none;
-            outline: none;
-        }
-
-        /*   活动style   */
-        body {
-            background-color: rgb(247, 247, 247);
-            max-width: 1200px;
-            margin: 0 auto;
-            font-size: 18px;
-        }
-
-        header {
-            max-width: 1200px;
-            margin-top: 40px;
-            height: 110px;
-            margin-bottom: 20px;
-            position: relative;
-            background-color: #fff;
-        }
-
-        header ul {
-            display: flex;
-            line-height: 110px;
-            flex-direction: row;
-            justify-content: space-evenly;
-        }
-
-        header ul li {
-            width: 400px;
-            color: rgb(187, 171, 156);
-        }
-
-        header ul li a {
-            font-weight: 700;
-            font-size: 16px;
-            color: rgb(119, 133, 120);
-        }
-
-        @media (max-width: 600px) {
-            body {
-                font-size: 16px;
-            }
-
-            header {
-                margin-top: 20px;
-                height: 60px;
-                margin-bottom: 10px;
-            }
-
-            header ul {
-                line-height: 60px;
-            }
-
-            header ul li {
-                width: 150px;
-            }
-
-            header ul li a {
-                font-size: 14px;
-            }
-        }
-
-        main {
-            max-width: 1200px;
-            padding: 40px;
-            background-color: #fff;
-        }
-
-        main h3 {
-            font-size: 26px;
-            /*height: ;*/
-            line-height: 39px;
-            text-align: center;
-            border-bottom: 1px solid rgb(174, 193, 207);
-        }
-
-        @media (max-width: 600px) {
-            main h3 {
-                font-size: 20px;
-            }
-        }
-
-        main ul {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            text-align: center;
-        }
-
-        main ul li {
-            width: 200px;
-            padding: 20px;
-            margin: 10px;
-            background-color: rgba(174, 193, 207, 0.2);
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgb(174, 193, 207);
-        }
-
-        main ul li h4 {
-            font-size: 22px;
-            line-height: 30px;
-            margin-bottom: 10px;
-            color: rgb(119, 133, 120);
-        }
-
-        @media (max-width: 600px) {
-            main ul li {
-                width: 150px;
-                padding: 15px;
-            }
-
-            main ul li h4 {
-                font-size: 18px;
-                line-height: 24px;
-                margin-bottom: 6px;
-            }
-        }
-
-        main ul li p {
-            margin-bottom: 5px;
-        }
-
-        main .tips {
-            margin-top: 20px;
-            font-weight: 700;
-            color: rgb(187, 171, 156);
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./init.css">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="stylesheet" type="text/css" href="./base.css">
+    <link rel="stylesheet" type="text/css" href="./header_index_activity.css">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 </head>
 
 <body>
@@ -170,7 +19,7 @@
     <div id="top_box" class="user">
         <ul>
             {% if username %}
-            <li><span>❤欢迎用户: {{ username }}</span></li>
+            <li><span><i class="iconfont">&#xe630;</i> 用户: {{ username }}</span></li>
             <li><a href="{% url 'logout' %}">退出登录</a></li>
             {% else %}
             <li><a href="{% url 'login' %}">登录</a></li>
@@ -186,24 +35,29 @@
         {% for i in activity %}
         <li>
             <h4><a href="/new_user/activity/{{ i.id }}.html">{{ i.activity_name }}</a></h4>
-            <p>{{ i.activity_start_time}}</p>
-            <p>{{ i.activity_place}}</p>
-            <p>{{ i.is_full}}</p>
+            <p>
+                <span><i class="iconfont">&#xe67d;</i> {{ i.activity_start_time}}</span>
+                <span><i class="iconfont" >&#xe609;</i> {{ i.activity_place}}</span>
+                <span><i class="iconfont">&#xe6b9;</i> {{ i.is_full}}</span>
+            </p>
         </li>
         {% endfor %}
     </ul>
     {% else %}
+    <p class="tips">未登录，登录后可查看活动详情</p>
     <ul>
         {% for i in activity %}
         <li>
             <h4>{{ i.activity_name }}</h4>
-            <p>{{ i.activity_start_time}}</p>
-            <p>{{ i.activity_place}}</p>
-            <p>{{ i.is_full}}</p>
+            <p>
+                <span><i class="iconfont">&#xe67d;</i> {{ i.activity_start_time}}</span>
+                <span><i class="iconfont">&#xe609;</i> {{ i.activity_place}}</span>
+                <span><i class="iconfont">&#xe6b9;</i> {{ i.is_full}}</span>
+            </p>
         </li>
         {% endfor %}
     </ul>
-        <p class="tips">未登录，点击左上角登录后可查看活动详情</p>
+
         {% endif %}
 
 </main>
