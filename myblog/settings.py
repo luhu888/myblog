@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import time
-
+import logging
+import django.utils.log
+import logging.handlers
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -182,7 +184,7 @@ LOGGING = {
         },
         # 控制台输出
         'console': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'standard'
         },
@@ -203,12 +205,12 @@ LOGGING = {
         'django': {
             'handlers': ['default', 'console'],
             'level': 'INFO',
-            'propagate': False
+            'propagate': True
         },
         # log 调用时需要当作参数传入
         'log': {
             'handlers': ['error', 'info', 'console', 'default'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': True
         },
     }

@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a3e4f40-678b-4f41-8592-e6f47108177d" name="Default" comment="add">
+      <change afterPath="$PROJECT_DIR$/new_user/templates/join.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myblog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myblog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myblog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myblog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_user/templates/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/activity.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new_user/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +107,7 @@
       <workItem from="1605014627141" duration="10983000" />
       <workItem from="1605283561135" duration="3006000" />
       <workItem from="1605316220304" duration="1031000" />
-      <workItem from="1605399549315" duration="7036000" />
+      <workItem from="1605399549315" duration="7498000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1603642595253</created>

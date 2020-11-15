@@ -4,15 +4,17 @@ from new_user.models import MyUser as User  # 扩展user后使用新的MyUser
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 from django.contrib.auth import login, logout, authenticate
 import logging
-from django import forms
-from django.forms import widgets
+# from django import forms
 
 
-class UserForm(forms.Form):
-    name = forms.CharField(min_length=4, label='用户名', required=True, help_text='必填')   # 必须用required
-    pwd = forms.CharField(min_length=4, label='密码', required=True, help_text='必填')
-    weChat = forms.CharField(min_length=4, label='微信号', required=True, help_text='必填')
+logger = logging.getLogger('django')
 
+
+# class UserForm(forms.Form):
+#     name = forms.CharField(min_length=4, label='用户名', required=True, help_text='必填')   # 必须用required
+#     pwd = forms.CharField(min_length=4, label='密码', required=True, help_text='必填')
+#     weChat = forms.CharField(min_length=4, label='微信号', required=True, help_text='必填')
+#
 
 # 用户登录
 def loginView(request):    # 设置标题和另外两个URL链接
@@ -45,7 +47,7 @@ def registerView(request):
     unit_1 = '/new_user/setpassword.html'
     unit_1_name = '修改密码'
     if request.method == 'POST':
-        form = UserForm(request.POST)  # form表单的name属性值应该与forms组件字段名称一致
+        # form = UserForm(request.POST)  # form表单的name属性值应该与forms组件字段名称一致
         username = request.POST.get('username', '')
         weChat = request.POST.get('weChat', '')
         password = request.POST.get('password', '')
@@ -95,15 +97,44 @@ def logoutView(request):
 def activityView(request, number):
     username = request.user.username
     activityDetails = BadmintonActivityDetails.objects.filter(activity_number_id=int(number))
-    # BadmintonActivity.objects.values(fk=int(number))
-    user_info = []
+    join_dic = {}
+    new_join_dic = {}
+    is_join = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=False)
+    is_substitution = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=True)
+    is_full = BadmintonActivity.objects.filter(id=int(number)).values_list('is_full')[0][0]
+    join = request.POST.get("join", '')
+    cancel = request.POST.get("cancel", '')
+    substitution = request.POST.get("substitution", '')
+    cancel_substitution = request.POST.get("cancel_substitution", '')
+
     for i in activityDetails:
-        # key = BadmintonActivity.objects.get(id=int(number))
-        value = MyUser.objects.filter(id=i.join_weChat_id).values_list('weChat')[0][0]
-        # value = 'rr'
-        user_info.append(value)
+        join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat', 'is_substitution'))
+        for j in join_dic.keys():
+            new_join_dic[MyUser.objects.get(id=j).weChat] = join_dic[j]
+            # logger.info(new_join_dic)
+    try:
+        if bool(is_join) and join == 'join':
+            txt = '您已成功报名，请勿重复报名'
+            logger.info(txt)
+        elif join == 'join':
+            join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
+            join_person.save()
+            logger.info('报名成功')
+        elif cancel == 'cancel':
+            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+            logger.info('取消报名成功')
+        elif substitution == 'substitution':
+            substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
+                                                             is_substitution=True)
+            substitution_activity.save()
+            logger.info('替补成功')
+        elif cancel_substitution == 'cancel_substitution':
+            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+            logger.info('取消替补成功')
+    except Exception as e:
+        logger.info('报错了')
     context = {
         'activity': activityDetails,
-        'user_info': user_info
+        'user_info': new_join_dic
     }
     return render(request, 'activity.html', locals())

@@ -15,19 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-
-
+from django.views.generic.base import RedirectView  # favicon.ico
 from blog import views
 from django.views.static import serve
 # 导入静态文件模块
 from django.conf import settings
+
+
 # 导入配置文件里的文件上传配置
+favicon_view = RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ueditor/', include('DjangoUeditor.urls')),  # 添加DjangoUeditor的URL
     re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),    # 增加此行
     path('', views.index),  # 里面留空，代表首页
-    path('new_user/', include('new_user.urls'))
+    path('new_user/', include('new_user.urls')),
+    re_path(r'favicon\.[ico|png]$', favicon_view),
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs
