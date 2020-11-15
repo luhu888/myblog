@@ -1,8 +1,8 @@
 header {
     margin-top: 60px;
-    height: 128px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     position: relative;
+    height: 38px;
 }
 header h1 {
     position: absolute;
@@ -10,14 +10,13 @@ header h1 {
     top: 0;
     transform: translateX(-50%);
     font-size: 38px;
-    /*color:rgb(119, 133, 120);*/
 }
 @media(max-width:600px){
     header{
         margin-top: 30px;
-        height: 76px;
         margin-bottom: 20px;
         position: relative;
+        height: 26px;
     }
     header h1{
         font-size: 26px;
@@ -34,7 +33,7 @@ main section {
     left: 50%;
     transform: translateX(-50%);
     max-width: 480px;
-    padding: 40px;
+    padding: 20px;
     background-color: #fff;
     font-size: 18px;
 }
@@ -47,7 +46,7 @@ main section h3 {
 }
 @media(max-width:600px){
     main section{
-        padding: 20px;
+        padding: 10px;
         font-size: 16px;
     }
 
