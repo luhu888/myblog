@@ -107,38 +107,35 @@ def activityView(request, number):
     cancel = request.POST.get("action", '')
     substitution = request.POST.get("action", '')
     cancel_substitution = request.POST.get("action", '')
-    txt = ''
+    txt1 = ''
+    join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat',
+                                                                                                        'is_substitution'))
     for i in activityDetails:
-        join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat', 'is_substitution'))
         for j in join_dic.keys():
             new_join_dic[MyUser.objects.get(id=j).weChat] = join_dic[j]
-            # logger.info(new_join_dic)
     if bool(is_join) and join == 'join':
-        txt = '您已成功报名，请勿重复报名'
-        logger.info(txt)
+        txt1 = '您已成功报名，请勿重复报名'
+        logger.info(txt1)
     elif join == 'join':
         join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
         join_person.save()
-        txt = '报名成功'
-        logger.info(txt)
+        txt1 = '报名成功'
+        logger.info(txt1)
     elif cancel == 'cancel':
         cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-        txt = '取消报名成功'
-        logger.info(txt)
+        txt1 = '取消报名成功'
+        logger.info(txt1)
 
     elif substitution == 'substitution':
         substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
                                                          is_substitution=True)
         substitution_activity.save()
-        txt = '替补成功'
-        logger.info(txt)
+        txt1 = '替补成功'
+        logger.info(txt1)
     elif cancel_substitution == 'cancel_substitution':
         cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-        txt = '取消替补成功'
-    context = {
-        'activity': activityDetails,
-        'user_info': new_join_dic,
-        'txt3': txt,
-    }
-    logger.info(txt)
+        txt1 = '取消替补成功'
+    context = {'activity': activityDetails, 'user_info': new_join_dic, 'txt1': txt1}
+    logger.info(txt1)
+    logger.info(new_join_dic)
     return render(request, 'activity.html', locals())
