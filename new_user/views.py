@@ -48,7 +48,6 @@ def registerView(request):
     unit_1 = '/new_user/setpassword.html'
     unit_1_name = '修改密码'
     if request.method == 'POST':
-        # form = UserForm(request.POST)  # form表单的name属性值应该与forms组件字段名称一致
         username = request.POST.get('username', '')
         weChat = request.POST.get('weChat', '')
         password = request.POST.get('password', '')
@@ -103,39 +102,33 @@ def activityView(request, number):
     is_join = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=False)
     is_substitution = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=True)
     is_full = BadmintonActivity.objects.filter(id=int(number)).values_list('is_full')[0][0]
-    join = request.POST.get("action", '')
-    cancel = request.POST.get("action", '')
-    substitution = request.POST.get("action", '')
-    cancel_substitution = request.POST.get("action", '')
-    txt1 = ''
-    join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat',
-                                                                                                        'is_substitution'))
+    action = request.POST.get("action", '')
+    join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat', 'is_substitution'))
     for i in activityDetails:
         for j in join_dic.keys():
             new_join_dic[MyUser.objects.get(id=j).weChat] = join_dic[j]
-    if bool(is_join) and join == 'join':
-        txt1 = '您已成功报名，请勿重复报名'
-        logger.info(txt1)
-    elif join == 'join':
-        join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
-        join_person.save()
-        txt1 = '报名成功'
-        logger.info(txt1)
-    elif cancel == 'cancel':
-        cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-        txt1 = '取消报名成功'
-        logger.info(txt1)
-
-    elif substitution == 'substitution':
-        substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
-                                                         is_substitution=True)
-        substitution_activity.save()
-        txt1 = '替补成功'
-        logger.info(txt1)
-    elif cancel_substitution == 'cancel_substitution':
-        cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-        txt1 = '取消替补成功'
-    context = {'activity': activityDetails, 'user_info': new_join_dic, 'txt1': txt1}
-    logger.info(txt1)
+    if request.method == 'POST':
+        if bool(is_join) and action == 'join':
+            tips = '您已成功报名，请勿重复报名'
+            # logger.info(tips)
+        elif action == 'join':
+            tips = '报名成功'
+            join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
+            join_person.save()
+        elif action == 'cancel':
+            tips = '取消报名成功'
+            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+            # logger.info(txt1)
+        elif action == 'substitution':
+            tips = '替补成功'
+            substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
+                                                             is_substitution=True)
+            substitution_activity.save()
+            logger.info(tips)
+        elif action == 'cancel_substitution':
+            tips = '取消替补成功'
+            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+        context = {'activity': activityDetails, 'user_info': new_join_dic}
+        logger.info(tips)
     logger.info(new_join_dic)
     return render(request, 'activity.html', locals())
