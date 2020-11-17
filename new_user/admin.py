@@ -27,6 +27,7 @@ class MyUserAdmin(UserAdmin):
 class BadmintonActivityAdmin(admin.ModelAdmin):
     list_display = ['activity_number', 'activity_name', 'is_full', 'activity_place', 'activity_start_time', 'activity_end_time', 'is_alive', 'limit_count']
 
+
 @admin.register(BadmintonActivityDetails)
 class BadmintonActivityDetailsAdmin(admin.ModelAdmin):
     list_display = ['activity_number', 'join_weChat', 'is_substitution']

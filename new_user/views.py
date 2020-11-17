@@ -103,42 +103,39 @@ def activityView(request, number):
     is_join = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=False)
     is_substitution = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=True)
     is_full = BadmintonActivity.objects.filter(id=int(number)).values_list('is_full')[0][0]
-    join = request.POST.get("join", '')
-    cancel = request.POST.get("cancel", '')
-    substitution = request.POST.get("substitution", '')
-    cancel_substitution = request.POST.get("cancel_substitution", '')
-
+    join = request.POST.get("action", '')
+    cancel = request.POST.get("action", '')
+    substitution = request.POST.get("action", '')
+    cancel_substitution = request.POST.get("action", '')
+    txt1 = ''
+    join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat',
+                                                                                                        'is_substitution'))
     for i in activityDetails:
-        join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat', 'is_substitution'))
         for j in join_dic.keys():
             new_join_dic[MyUser.objects.get(id=j).weChat] = join_dic[j]
-            # logger.info(new_join_dic)
-    try:
-        if bool(is_join) and join == 'join':
-            txt = '您已成功报名，请勿重复报名'
-            logger.info(txt)
-        elif join == 'join':
-            join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
-            join_person.save()
-            logger.info('报名成功')
-        elif cancel == 'cancel':
-            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-            logger.info('取消报名成功')
-        elif substitution == 'substitution':
-            substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
-                                                             is_substitution=True)
-            substitution_activity.save()
-            logger.info('替补成功')
-        elif cancel_substitution == 'cancel_substitution':
-            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-            logger.info('取消替补成功')
-    except Exception as e:
-        logger.info('报错了')
-    context = {
-        'activity': activityDetails,
-        'user_info': new_join_dic
-    }
+    if bool(is_join) and join == 'join':
+        txt1 = '您已成功报名，请勿重复报名'
+        logger.info(txt1)
+    elif join == 'join':
+        join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
+        join_person.save()
+        txt1 = '报名成功'
+        logger.info(txt1)
+    elif cancel == 'cancel':
+        cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+        txt1 = '取消报名成功'
+        logger.info(txt1)
+
+    elif substitution == 'substitution':
+        substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
+                                                         is_substitution=True)
+        substitution_activity.save()
+        txt1 = '替补成功'
+        logger.info(txt1)
+    elif cancel_substitution == 'cancel_substitution':
+        cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+        txt1 = '取消替补成功'
+    context = {'activity': activityDetails, 'user_info': new_join_dic, 'txt1': txt1}
+    logger.info(txt1)
+    logger.info(new_join_dic)
     return render(request, 'activity.html', locals())
-
-    # return HttpResponseRedirect('%s' % next, locals())
-

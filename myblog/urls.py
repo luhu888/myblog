@@ -31,6 +31,7 @@ urlpatterns = [
     path('', views.index),  # 里面留空，代表首页
     path('new_user/', include('new_user.urls')),
     re_path(r'favicon\.[ico|png]$', favicon_view),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs

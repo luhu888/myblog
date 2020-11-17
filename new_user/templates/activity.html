@@ -1,45 +1,36 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>活动详情</title>
-    <script type="text/javascript">
-            let isCommitted = false;//表单是否已经提交标识，默认为false
-            function dosubmit(){
-              if(isCommitted===false){
-                isCommitted = true;//提交表单后，将表单是否已经提交标识设置为true
-                return true;//返回true让表单正常提交
-             }else{
-                 return false;//返回false那么表单将不提交
-             }
-         }
-        </script>
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-    <link rel="stylesheet" href="../../templates/init.css" type="text/css">
-    <link rel="stylesheet" href="../../templates/base.css" type="text/css">
-    <link rel="stylesheet" href="../../templates/header_index_activity.css" type="text/css">
-    <link rel="stylesheet" href="./activity.css" type="text/css">
-    <script src="../../templates/jquery-3.5.1.min.js"></script>
-    <script src="../signUpForActivity.js"></script>
+    <link rel="stylesheet" href="{% static 'css/init.css' %}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/user.css'%}">
+    <link rel="stylesheet" href="{% static 'css/header_index_activity.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/activity.css' %}" type="text/css">
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/signUpForActivity.js' %}"></script>
 
 </head>
 
     <body>
    <header id="top"> <!-- 内容显示区域 ：width : 1211px -->
         <div id="top_box">
-            <ul>
                 {% if username %}
-                <li><span><i class="iconfont">&#xe630;</i> 用户: <em id="username">{{ username }}</em></span></li>
-              <li><a href="{% url 'logout' %}">退出登录</a></li>
-          {% else %}
-            <ul>
-                <li><a href="{% url 'login' %}">登录</a></li>
-                <li><a href="{% url 'register' %}">注册</a></li>
+                <ul>
+                  <li><span><i class="iconfont">&#xe630;</i> 用户: <em id="username">{{ username }}</em></span></li>
+                  <li><a href="{% url 'logout' %}">退出登录</a></li>
+                </ul>
+                {% else %}
+                <ul>
+                  <li><a href="{% url 'login' %}">登录</a></li>
+                  <li><a href="{% url 'register' %}">注册</a></li>
+                </ul>
                 {% endif %}
-            </ul>
         </div>
    </header>
 
@@ -60,7 +51,7 @@
            报名替补
            {% elif is_substitution %}
            <input type="hidden" name='cancel_substitution' value="cancel_substitution">
-          取消替补
+           取消替补
            {% endif %}
 
        </button>
@@ -84,7 +75,7 @@
            {% endfor %}
            </ul>
        </div>
-                  {% if txt %}<div>{{ txt }}</div>{% endif %}
+      <div>{{ txt }}</div>
   </main>
     </body>
 </html>

@@ -4,9 +4,8 @@ $(document).ready(function(){
         let actionVal=$(signButton.children()[0]).val()
         let userName=$('#username').text()
         let info={"username":userName,"action":actionVal}
-        $.post("/new_user/activity/1.html",info,()=>{
+        $.post(window.location.pathname,info,()=>{
             location.reload();
         })
     })
-
 })
