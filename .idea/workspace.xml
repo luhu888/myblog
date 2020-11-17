@@ -2,26 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a3e4f40-678b-4f41-8592-e6f47108177d" name="Default" comment="add">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myblog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myblog/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myblog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myblog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/signUpForActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/signUpForActivity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/activity.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/activity.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/activity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new_user/templates/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/activity.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/join.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/user.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/header_index_activity.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/header_index_activity.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/activity.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/activity.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/user.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/signUpForActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/signUpForActivity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/init.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/init.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/jquery-3.5.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/jquery-3.5.1.min.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,13 +85,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\hulu\PycharmProjects\myblog-master\user\templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\code\html_badminton\myblog\templates" />
       <recent name="D:\Users\hulu\PycharmProjects\myblog-master\user\templetes" />
       <recent name="D:\Users\hulu\PycharmProjects\myblog-master\user\templetes\index" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Users\hulu\PycharmProjects\myblog-master\user\templates" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -113,46 +103,6 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@58e08111" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@44b855b9" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@14e8924d" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@3823fca6" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6009e19f" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@45c0a846" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@11ebca4" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@3a992eb7" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -182,7 +132,7 @@
       <workItem from="1605546433927" duration="1707000" />
       <workItem from="1605549232844" duration="1497000" />
       <workItem from="1605573031416" duration="684000" />
-      <workItem from="1605613918445" duration="3854000" />
+      <workItem from="1605613918445" duration="16962000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1603642595253</created>
@@ -273,26 +223,26 @@
     </state>
     <state x="1169" y="345" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1605540061693" />
     <state x="1558" y="463" key="FileChooserDialogImpl/0.0.2560.1410@0.0.2560.1410" timestamp="1605573144741" />
-    <state width="1004" height="497" key="GridCell.Tab.0.bottom" timestamp="1605617503474">
+    <state width="1004" height="217" key="GridCell.Tab.0.bottom" timestamp="1605618839563">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="855" height="197" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605550779174" />
-    <state width="1004" height="497" key="GridCell.Tab.0.bottom/0.0.2560.1410@0.0.2560.1410" timestamp="1605617503474" />
-    <state width="1004" height="497" key="GridCell.Tab.0.center" timestamp="1605617503474">
+    <state width="1004" height="217" key="GridCell.Tab.0.bottom/0.0.2560.1410@0.0.2560.1410" timestamp="1605618839563" />
+    <state width="1004" height="217" key="GridCell.Tab.0.center" timestamp="1605618839563">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="855" height="197" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605550779173" />
-    <state width="1004" height="497" key="GridCell.Tab.0.center/0.0.2560.1410@0.0.2560.1410" timestamp="1605617503474" />
-    <state width="1004" height="497" key="GridCell.Tab.0.left" timestamp="1605617503473">
+    <state width="1004" height="217" key="GridCell.Tab.0.center/0.0.2560.1410@0.0.2560.1410" timestamp="1605618839563" />
+    <state width="1004" height="217" key="GridCell.Tab.0.left" timestamp="1605618839563">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="855" height="197" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605550779172" />
-    <state width="1004" height="497" key="GridCell.Tab.0.left/0.0.2560.1410@0.0.2560.1410" timestamp="1605617503473" />
-    <state width="1004" height="497" key="GridCell.Tab.0.right" timestamp="1605617503474">
+    <state width="1004" height="217" key="GridCell.Tab.0.left/0.0.2560.1410@0.0.2560.1410" timestamp="1605618839563" />
+    <state width="1004" height="217" key="GridCell.Tab.0.right" timestamp="1605618839563">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="855" height="197" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605550779173" />
-    <state width="1004" height="497" key="GridCell.Tab.0.right/0.0.2560.1410@0.0.2560.1410" timestamp="1605617503474" />
+    <state width="1004" height="217" key="GridCell.Tab.0.right/0.0.2560.1410@0.0.2560.1410" timestamp="1605618839563" />
     <state width="294" height="641" key="HiddenNamespacesPopup" timestamp="1605616337934">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
@@ -319,9 +269,10 @@
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="1517" y="343" key="run.anything.popup/0.0.2560.1410@0.0.2560.1410" timestamp="1605418333877" />
-    <state x="875" y="291" width="672" height="678" key="search.everywhere.popup" timestamp="1605549135534">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="1167" y="391" width="896" height="911" key="search.everywhere.popup" timestamp="1605628210553">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="875" y="291" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1605549135534" />
+    <state x="1167" y="391" width="896" height="911" key="search.everywhere.popup/0.0.2560.1410@0.0.2560.1410" timestamp="1605628210553" />
   </component>
 </project>

@@ -14,10 +14,17 @@
     <link rel="stylesheet" href="{% static 'css/activity.css' %}" type="text/css">
     <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
     <script src="{% static 'js/signUpForActivity.js' %}"></script>
+    <script src="{% static 'js/activity.js' %}"></script>
 
 </head>
 
     <body>
+    <div class="mask">
+        <div class="pop">
+            <p>{{txt}}</p>
+            <button>确定</button>
+        </div>
+    </div>
    <header id="top"> <!-- 内容显示区域 ：width : 1211px -->
         <div id="top_box">
                 {% if username %}
@@ -35,7 +42,6 @@
    </header>
 
    <nav>
-       <section>
        <!--   已有 <span>10</span> 人报名， <span>3</span> 人替补，已满员可报名替补。-->
        <div>已有 <span>10</span> 人报名，余 <span>2</span> 个名额，满员后仅可替补。</div>
       {% csrf_token %}
@@ -53,16 +59,14 @@
            <input type="hidden" name='cancel_substitution' value="cancel_substitution">
            取消替补
            {% endif %}
-
        </button>
-       </section>
    </nav>
   <main>
        <div class="tab">
            <h3>活动详情</h3>
            <p>
-               <span><i class="iconfont">&#xe67d;</i> {{ i.activity_start_time}}</span>
-               <span><i class="iconfont" >&#xe609;</i> {{ i.activity_place}}</span>
+               <span><i class="iconfont timeFlag">&#xe67d;</i> {{ i.activity_start_time}}</span>
+               <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
            </p>
        </div>
        <div class="persons">
@@ -70,12 +74,12 @@
            {% for key, value in new_join_dic.items %}
                <li>
                    <span>{{ key }}</span>
-                   <span>{{ value }}</span>
+                   <span class="substitute">{{ value }}</span>
                </li>
            {% endfor %}
            </ul>
        </div>
-      <div>{{ txt }}</div>
   </main>
+
     </body>
 </html>
