@@ -139,3 +139,4 @@ def activityView(request, number):
     logger.info(txt1)
     logger.info(new_join_dic)
     return render(request, 'activity.html', locals())
+

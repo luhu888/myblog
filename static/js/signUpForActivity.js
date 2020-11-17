@@ -6,12 +6,14 @@ $(document).ready(function(){
         let userName=$('#username').text()
         let info={"username":userName,"action":actionVal}
         $.post(window.location.pathname,info,()=>{
-            let text="{{ txt }}"
+
             // $(".pop p").text(text)
-           $(".pop p").text("报名成功")
+            // text应该取页面最新的返回值或者py文件的返回值
+                let text=$(".pop p").text()
+                $(".pop p").text(text)
                 $(".pop").fadeIn(200)
                 $(".mask").fadeIn(200)
-            console.log(text)
+
         })
         $(".pop button").click(()=>{
             $(".pop").fadeOut(200)
