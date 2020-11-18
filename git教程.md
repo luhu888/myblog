@@ -5,7 +5,7 @@ git add .
 git commit -m "init dev"
 git .ignore没有生效的解决办法：git清除本地缓存
 git rm -r --cached .
-git add .
+git add ./new 添加修改的文件
 git commit -m 'update .gitignore'
 git push -u origin master
 
