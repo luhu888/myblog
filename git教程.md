@@ -18,3 +18,4 @@ git pull code 分支B 拉取分支B代码
 git merge --no-ff 分支A 将分支A合并到分支B
 git status 查看冲突代码
 git push code 分支B 提交解决冲突后的代码
+git push origin local_branch:remote_branch  推送到指定远程分支

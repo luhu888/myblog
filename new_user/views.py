@@ -128,7 +128,7 @@ def activityView(request, number):
         elif action == 'cancel_substitution':
             tips = '取消替补成功'
             cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-        context = {'activity': activityDetails, 'user_info': new_join_dic}
+        context = {'activity': activityDetails, 'user_info': new_join_dic, "tips": tips}
         logger.info(tips)
     logger.info(new_join_dic)
     return render(request, 'activity.html', locals())
