@@ -50,7 +50,6 @@ main ul li p span{
 
 main ul li p span i{
     font-size: 20px;
-    color: rgb(241, 224, 90);
 }
 
 @media (max-width: 600px) {

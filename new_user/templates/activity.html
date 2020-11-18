@@ -14,15 +14,14 @@
     <link rel="stylesheet" href="{% static 'css/activity.css' %}" type="text/css">
     <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
     <script src="{% static 'js/signUpForActivity.js' %}"></script>
-<!--    <script src="{% static 'js/activity.js' %}"></script>-->
 
 </head>
 
     <body>
     <div class="mask">
         <div class="pop">
-            <p>{{ tips }}</p>
-            <button>确定</button>
+            <p>{{tips}}</p>
+            <button id="tipsEndFlag">确定</button>
         </div>
     </div>
    <header id="top"> <!-- 内容显示区域 ：width : 1211px -->

@@ -36,6 +36,7 @@ main section {
     padding: 20px;
     background-color: #fff;
     font-size: 18px;
+    border-radius: 6px;
 }
 
 main section h3 {
@@ -75,7 +76,7 @@ main section input, .submit {
     margin-top: 4px;
     margin-bottom: 8px;
     font-size: 18px;
-
+    padding: 5px 16px;
 }
 
 main section .submit {
@@ -88,6 +89,8 @@ main section .otherLinks{
     width: 400px;
     margin-top: 5px;
     margin-bottom: 10px;
+    padding-top:16px;
+    paddind-bottom:16px;
 }
 main section div .link {
     position: absolute;
@@ -115,10 +118,13 @@ main section div a.right{
         height: 28px;
         font-size: 16px;
         border-radius: 4px;
+        padding: 3px 10px;
     }
     main section .otherLinks{
         width: 300px;
         margin-bottom: 10px;
+        padding-top:10px;
+        paddind-bottom:10px;
     }
     main section div .link {
         display: inline-block;
@@ -128,7 +134,7 @@ main section div a.right{
         text-align: center;
         font-size:14px;
         font-weight: 700;
-        color: rgba(119, 133, 120,1.5);
+        color: rgb(3, 102, 214);
     }
     main section div a.right{
         left: 150px;

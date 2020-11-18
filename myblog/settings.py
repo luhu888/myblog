@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import time
-import logging
-import django.utils.log
-import logging.handlers
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -48,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -88,8 +87,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myblog',
         'USER': 'root',
-        # 'PASSWORD': 'root',
-        'PASSWORD': 'luhu199515lbh',
+        'PASSWORD': 'root',
+        # 'PASSWORD': 'luhu199515lbh',
 
         'HOST': 'localhost',
         'PORT': '3306',
@@ -134,10 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
-)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
@@ -149,7 +145,7 @@ if not os.path.exists(log_path): os.mkdir(log_path)  # 如果不存在这个logs
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': {
         # 日志格式
         'standard': {
@@ -166,7 +162,7 @@ LOGGING = {
     'handlers': {
         # 默认记录所有日志
         'default': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(log_path, 'all-{}.log'.format(time.strftime('%Y-%m-%d'))),
             'maxBytes': 1024 * 1024 * 5,  # 文件大小
@@ -186,7 +182,7 @@ LOGGING = {
         },
         # 控制台输出
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'standard'
         },
@@ -207,12 +203,12 @@ LOGGING = {
         'django': {
             'handlers': ['default', 'console'],
             'level': 'INFO',
-            'propagate': True
+            'propagate': False
         },
         # log 调用时需要当作参数传入
         'log': {
             'handlers': ['error', 'info', 'console', 'default'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True
         },
     }
