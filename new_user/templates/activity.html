@@ -43,7 +43,7 @@
    <nav>
        <!--   已有 <span>10</span> 人报名， <span>3</span> 人替补，已满员可报名替补。-->
        <div>已有 <span>10</span> 人报名，余 <span>2</span> 个名额，满员后仅可替补。</div>
-      {% csrf_token %}
+      <!--{% csrf_token %}-->
            <button id="signUpForActivity">
            {% if not is_join and not is_full %}
            <input type="hidden" name='join' value="join">
