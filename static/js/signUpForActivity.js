@@ -5,12 +5,16 @@ $(document).ready(function(){
         let actionVal=$(signButton.children()[0]).val()
         let userName=$('#username').text()
         let info={"username":userName,"action":actionVal}
-        $.post(window.location.pathname,info,()=>{
-
-            // $(".pop p").text(text)
-            // text应该取页面最新的返回值或者py文件的返回值
-                let text=$(".pop p").text()
-                $(".pop p").text(text)
+        $.post(window.location.pathname,info,(result)=>{
+            //result是string类型
+            let index1=result.indexOf('<div class="pop">')
+            let length=('<div class="pop">').length
+            let index2=result.indexOf('<button id="tipsEndFlag">')
+            let text=result.substring(index1+length,index2)
+            let index3=text.indexOf('<p>')
+            let index4=text.indexOf('</p>')
+            let text2=text.substring(index3+3,index4)
+            $(".pop p").text(text2)
                 $(".pop").fadeIn(200)
                 $(".mask").fadeIn(200)
 

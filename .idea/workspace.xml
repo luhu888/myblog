@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0a3e4f40-678b-4f41-8592-e6f47108177d" name="Default" comment="add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_user/templates/activity.html" beforeDir="false" afterPath="$PROJECT_DIR$/new_user/templates/activity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/activity.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/activity.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/activity.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/activity.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/signUpForActivity.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/signUpForActivity.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,12 +94,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MySQL - @localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -127,6 +123,8 @@
       <workItem from="1605549232844" duration="1497000" />
       <workItem from="1605573031416" duration="684000" />
       <workItem from="1605613918445" duration="16962000" />
+      <workItem from="1605636414760" duration="1109000" />
+      <workItem from="1605658013899" duration="4777000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1603642595253</created>
