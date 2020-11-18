@@ -1,0 +1,52 @@
+/* 初始化样式，用于消除元素的默认样式*/
+
+* {
+    margin: 0 auto;
+    /*padding: 0 auto;*/
+    box-sizing: border-box;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+button{
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul {
+    padding-inline-start: 0;
+}
+
+button:focus {
+    border: 0 none;
+    outline: none;
+}
+.form label{
+    border: none;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.form input[type=text] {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+i, em{
+    font-style:normal
+}

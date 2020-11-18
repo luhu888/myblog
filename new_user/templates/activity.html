@@ -1,44 +1,85 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>活动详情</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <link rel="stylesheet" href="{% static 'css/init.css' %}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/user.css'%}">
+    <link rel="stylesheet" href="{% static 'css/header_index_activity.css'%}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/activity.css' %}" type="text/css">
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/signUpForActivity.js' %}"></script>
+<!--    <script src="{% static 'js/activity.js' %}"></script>-->
+
 </head>
 
-
-
     <body>
+    <div class="mask">
+        <div class="pop">
+            <p>{{ tips }}</p>
+            <button>确定</button>
+        </div>
+    </div>
    <header id="top"> <!-- 内容显示区域 ：width : 1211px -->
         <div id="top_box">
-            <ul class="rt"> {% if username %}
-                <li>用户名: {{ username }}</li>
-                <li><a href="{% url 'logout' %}">退出登录</a></li>
-                 </ul>
-            <h3 align="left">活动详情</h3>
-    <table border="1" height="100" width="300" cellspacing="0" align="left">
-        <tr align="center">
-            <td>报名人员</td>
-        </tr>
-        {% for value in user_info %}
-        <tr align="center">
-            <td>{{ value }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-        </div><br>
-       <br><br><br><br>
-       <button>报名</button>
+                {% if username %}
+                <ul>
+                  <li><span><i class="iconfont">&#xe630;</i> 用户: <em id="username">{{ username }}</em></span></li>
+                  <li><a href="{% url 'logout' %}">退出登录</a></li>
+                </ul>
                 {% else %}
-                <li><a href="{% url 'login' %}">登录</a></li>
-                <li><a href="{% url 'register' %}">注册</a></li>
+                <ul>
+                  <li><a href="{% url 'login' %}">登录</a></li>
+                  <li><a href="{% url 'register' %}">注册</a></li>
+                </ul>
                 {% endif %}
-            </ul>
+        </div>
+   </header>
 
+   <nav>
+       <!--   已有 <span>10</span> 人报名， <span>3</span> 人替补，已满员可报名替补。-->
+       <div>已有 <span>10</span> 人报名，余 <span>2</span> 个名额，满员后仅可替补。</div>
+      {% csrf_token %}
+           <button id="signUpForActivity">
+           {% if not is_join and not is_full %}
+           <input type="hidden" name='join' value="join">
+           报名
+           {% elif is_join %}
+           <input type="hidden" name='cancel' value="cancel">
+           取消报名
+           {% elif not is_join and is_full and not is_substitution %}
+           <input type="hidden" name='substitution' value="substitution">
+           报名替补
+           {% elif is_substitution %}
+           <input type="hidden" name='cancel_substitution' value="cancel_substitution">
+           取消替补
+           {% endif %}
+       </button>
+   </nav>
+  <main>
+       <div class="tab">
+           <h3>活动详情</h3>
+           <p>
+               <span><i class="iconfont timeFlag">&#xe67d;</i> {{ i.activity_start_time}}</span>
+               <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
+           </p>
+       </div>
+       <div class="persons">
+           <ul>
+           {% for key, value in new_join_dic.items %}
+               <li>
+                   <span>{{ key }}</span>
+                   <span class="substitute">{{ value }}</span>
+               </li>
+           {% endfor %}
+           </ul>
+       </div>
+  </main>
 
-    </header>
-
-
-</div>
-</body>
+    </body>
 </html>

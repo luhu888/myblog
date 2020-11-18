@@ -107,6 +107,8 @@ python manage.py makemigrations blog
 python manage.py migrate
 delete from django_migrations where app='user';
 修改model后migrate没有自动修改对应表的字段，删除migrations中app记录，以及admin记录
+使用重写之后的user表迁移数据要先迁移new_user表，否则会报错admin_log表已存在
+可以使用 python manage.py migrate --fake admin 重置migration解决
 python manage.py createsuperuser
 /opt/env_list/env_myblog/lib/python3.6/site-packages/django/forms/boundfield.py", line 93,
 注释掉虚拟环境中Django的93行
