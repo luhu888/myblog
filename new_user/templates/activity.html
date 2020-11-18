@@ -44,7 +44,7 @@
 
    <nav>
        <!--   已有 <span>10</span> 人报名， <span>3</span> 人替补，已满员可报名替补。-->
-       <div>已有 <span>10</span> 人报名，余 <span>2</span> 个名额，满员后仅可替补。</div>
+       <div>已有 <span>{{ join_count }}</span> 人报名，余 <span>2</span> 个名额，满员后仅可替补。</div>
       <!--{% csrf_token %}-->
            <button id="signUpForActivity">
            {% if not is_join and not is_full %}
@@ -66,8 +66,8 @@
        <div class="tab">
            <h3>活动详情</h3>
            <p>
-               <span><i class="iconfont timeFlag">&#xe67d;</i> {{ i.activity_start_time}}</span>
-               <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
+               <span><i class="iconfont timeFlag">&#xe67d;</i> {{ activity_time }}</span><br>
+               <span><i class="iconfont placeFlag" >&#xe609;</i><a href="https://m.amap.com/navi/?start=120.351794,31.241284&dest=121.351794,31.241284&destName=龙腾羽毛球馆&key=5c403e2407955e7d9a1a68877a1e768d"> {{ activity_place }}</a></span>
            </p>
        </div>
        <div class="persons">
