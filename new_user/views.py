@@ -1,6 +1,8 @@
 from django.contrib.auth.hashers import make_password
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+
 from new_user.models import MyUser as User  # 扩展user后使用新的MyUser
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 from django.contrib.auth import login, logout, authenticate
@@ -133,3 +135,16 @@ def activityView(request, number):
     logger.info(new_join_dic)
     return render(request, 'activity.html', locals())
 
+@csrf_exempt
+def my_api(request):
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        weChat = request.POST.get('weChat', '')
+        password = request.POST.get('password', '')
+        try:
+            user = User.objects.create_user(username=username, password=password, weChat=weChat)
+            user.save()
+        except Exception as e:
+            print(e)
+            return JsonResponse({"result": "注册失败"}, status=200)
+        return JsonResponse({"result": "注册成功"})
