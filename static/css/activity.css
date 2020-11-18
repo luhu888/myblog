@@ -1,50 +1,36 @@
 
 
 nav{
+    max-width:1200px;
     margin-bottom:15px ;
     background-color: #fff;
-}
-nav section{
-    border: 1px solid rgb(225, 228, 232);
-    border-radius: 6px;
     padding: 16px;
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
-    background-color: rgb(250,251,252);
-
+    font-size: 16px;
 }
-nav section div{
+nav  div{
     display: inline-block;
-    height: 18px;
-    line-height: 36px;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 0px;
+    margin-right: 10px;
 }
-nav section button{
+nav button{
     background-color: rgb(46, 164, 79);
     color: #fff;
     padding: 5px 16px;
     border-radius: 6px;
-    font-size: 16px;
     margin-left: 0;
     margin-right: 0;
 }
 @media (max-width: 600px) {
     nav{
-        margin-bottom:10px;
-    }
-    nav section{
+        margin-bottom:10px ;
         padding: 10px;
-        font-size: 16px;
-    }
-    nav section div{
-        line-height: 22px;
-    }
-    nav section button{
-        padding: 3px 10px;
-        max-width:52px;
         font-size: 14px;
+    }
+    nav  button{
+        width: 100px;
+        padding: 6px 10px;
     }
 }
 main{
@@ -73,7 +59,6 @@ main .tab  span{
 }
 main .tab  span i{
     font-size: 20px;
-    color: rgb(241, 224, 90);
 }
 @media (max-width: 600px) {
     main{
@@ -122,4 +107,56 @@ main .persons ul li span{
 display: inline-block;
     margin-left: 0;
     margin-right: 0;
+}
+html{
+    position: relative;
+}
+
+.mask{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(8, 8, 8, 0.31);
+    z-index:100;
+}
+.pop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30vw;
+    height: 15vw;
+    padding:16px ;
+    text-align: center;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 18px;
+}
+
+.pop button{
+    margin-top: 40px;
+    background-color: rgb(46, 164, 79);
+    color: #fff;
+    padding: 5px 16px;
+    border-radius: 6px;
+}
+@media (max-width: 600px) {
+    .pop {
+        width: 40vw;
+        padding: 10px;
+        height: 20vw;
+        font-size: 14px;
+    }
+
+    .pop button{
+        padding: 3px 10px;
+        margin-top: 10px;
+    }
 }
