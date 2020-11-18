@@ -113,11 +113,8 @@ html{
 }
 
 .mask{
-<<<<<<< HEAD
     display: flex;
     justify-content: center;
-=======
->>>>>>> e36a91c2c77bcb7cb95a05f8139cff884a1b2660
     position: absolute;
     top: 0;
     left: 0;
@@ -131,12 +128,10 @@ html{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-<<<<<<< HEAD
     display: flex;
     flex-direction: column;
     justify-content: center;
-=======
->>>>>>> e36a91c2c77bcb7cb95a05f8139cff884a1b2660
+
     width: 30vw;
     height: 15vw;
     padding:16px ;
@@ -145,11 +140,7 @@ html{
     background-color: #fff;
     font-size: 18px;
 }
-<<<<<<< HEAD
 
-.pop button{
-    margin-top: 40px;
-=======
 .pop p{
     position: absolute;
     top: 50%;
@@ -164,7 +155,6 @@ html{
     left: 50%;
     margin-top: 40px;
     transform:translate(-50%,-50%);
->>>>>>> e36a91c2c77bcb7cb95a05f8139cff884a1b2660
     background-color: rgb(46, 164, 79);
     color: #fff;
     padding: 5px 16px;
@@ -177,18 +167,13 @@ html{
         height: 20vw;
         font-size: 14px;
     }
-<<<<<<< HEAD
 
-    .pop button{
-        padding: 3px 10px;
-=======
     .pop p{
         margin-top: -16px;
     }
     .pop button{
         padding: 3px 10px;
         max-width:52px;
->>>>>>> e36a91c2c77bcb7cb95a05f8139cff884a1b2660
         margin-top: 10px;
     }
 }

@@ -51,7 +51,7 @@ def registerView(request):
         username = request.POST.get('username', '')
         weChat = request.POST.get('weChat', '')
         password = request.POST.get('password', '')
-        if User.objects.filter(username=username):
+        if User.objects.filter(username=username) or User.objects.filter(weChat=weChat):
             tips = '用户已存在'
         elif username == '' or weChat == '' or password == '':
             tips = '请将注册信息填写完整'
