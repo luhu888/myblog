@@ -17,5 +17,4 @@ git checkout 分支B 切换到分支B
 git pull code 分支B 拉取分支B代码
 git merge --no-ff 分支A 将分支A合并到分支B
 git status 查看冲突代码
-eclipse解决冲突代码
 git push code 分支B 提交解决冲突后的代码

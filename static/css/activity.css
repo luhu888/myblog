@@ -1,0 +1,171 @@
+
+
+nav{
+    max-width:1200px;
+    margin-bottom:15px ;
+    background-color: #fff;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+nav  div{
+    display: inline-block;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+nav button{
+    background-color: rgb(46, 164, 79);
+    color: #fff;
+    padding: 5px 16px;
+    border-radius: 6px;
+    margin-left: 0;
+    margin-right: 0;
+}
+@media (max-width: 600px) {
+    nav{
+        margin-bottom:10px ;
+        padding: 10px;
+        font-size: 14px;
+    }
+    nav  button{
+        width: 100px;
+        padding: 6px 10px;
+    }
+}
+main{
+    max-width:1200px;
+    background-color: #fff;
+    text-align: left;
+}
+main .tab{
+    padding: 16px;
+    background-color: rgb(241, 248, 255);
+    border: 1px solid rgb(200, 225, 255);
+    border-radius: 6px 6px 0 0 ;
+    border-bottom:none ;
+}
+main .tab h3{
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+main .tab h3{
+    margin-bottom: 10px;
+}
+main .tab  span{
+    display: inline-block;
+    margin-right: 16px;
+    font-size:16px;
+}
+main .tab  span i{
+    font-size: 20px;
+}
+@media (max-width: 600px) {
+    main{
+        padding: 10px;
+    }
+    main .tab{
+        padding: 10px;
+    }
+    main .tab h3{
+        font-size: 18px;
+    }
+    main .tab h3{
+        margin-bottom: 6px;
+    }
+    main .tab  span{
+        margin-right: 10px;
+        font-size:14px ;
+    }
+    main .tab  span i{
+        font-size: 18px;
+    }
+}
+
+main .persons{
+    border: 1px solid rgb(234, 236, 239);
+    border-bottom:none ;
+    border-radius: 0 0 6px 6px;
+}
+main .persons ul li{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between ;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgb(234, 236, 239);
+}
+@media (max-width: 600px) {
+    main .persons ul li{
+        padding: 4px 10px;
+    }
+}
+
+main .persons ul li:hover{
+    background-color: rgb(250,251,252);
+}
+main .persons ul li span{
+display: inline-block;
+    margin-left: 0;
+    margin-right: 0;
+}
+html{
+    position: relative;
+}
+
+.mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(8, 8, 8, 0.31);
+    z-index:100;
+}
+.pop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 30vw;
+    height: 15vw;
+    padding:16px ;
+    text-align: center;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 18px;
+}
+.pop p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    margin-top: -40px;
+    line-height: 18px;
+}
+.pop button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 40px;
+    transform:translate(-50%,-50%);
+    background-color: rgb(46, 164, 79);
+    color: #fff;
+    padding: 5px 16px;
+    border-radius: 6px;
+}
+@media (max-width: 600px) {
+    .pop {
+        width: 40vw;
+        padding: 10px;
+        height: 20vw;
+        font-size: 14px;
+    }
+    .pop p{
+        margin-top: -16px;
+    }
+    .pop button{
+        padding: 3px 10px;
+        max-width:52px;
+        margin-top: 10px;
+    }
+}
