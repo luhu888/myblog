@@ -1,8 +1,15 @@
 $(document).ready(function(){
     init()
     const signButton=$("#signUpForActivity")
+    let actionVal=$(signButton.children()[0]).val()
+
+    //给到字段值判断是否可以取消，不可取消的话置灰，点击给到不可取消的tips
+    //if(actionVal==="cancel"&& xxx===false){
+    // signButton.addClass("disabled")
+    // }
+
     signButton.click(()=>{
-        let actionVal=$(signButton.children()[0]).val()
+
         let userName=$('#username').text()
         let info={"username":userName,"action":actionVal}
         $.post(window.location.pathname,info,(result)=>{
@@ -15,14 +22,16 @@ $(document).ready(function(){
             let index4=text.indexOf('</p>')
             let text2=text.substring(index3+3,index4)
             $(".pop p").text(text2)
-                $(".pop").fadeIn(200)
-                $(".mask").fadeIn(200)
+                $(".pop").fadeIn(200).delay(600).fadeOut(200)
+                $(".mask").fadeIn(200).delay(600).fadeOut(200)
+                setTimeout(()=>{location.reload()},1000);
         })
-        $(".pop button").click(()=>{
-            $(".pop").fadeOut(200)
-            $(".mask").fadeOut(200)
-            location.reload()
-        })
+        // 按钮和定时器两种样式
+        // $(".pop button").click(()=>{
+        //     $(".pop").fadeOut(200)
+        //     $(".mask").fadeOut(200)
+        //     location.reload()
+        // })
     })
 })
 function init() {

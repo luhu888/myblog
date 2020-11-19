@@ -30,11 +30,24 @@ main ul li {
     border-bottom: 1px solid rgba(174, 193, 207,0.5);
 }
 
+
 main ul li h4 {
+    display: flex;
+    justify-content: space-between;
     font-size: 22px;
     line-height: 30px;
     margin-bottom: 10px;
+}
+main ul li h4 span{
+    margin-left: 0;
+    margin-right: 0;
+}
+main ul li h4 a{
+    margin-left: 0;
+    margin-right: 0;
     color: rgb(3, 104, 214);
+    font-size: 16px;
+    line-height: 22px;
 }
 
 main ul li p {
@@ -56,12 +69,20 @@ main ul li p span i{
     main {
         padding: 10px;
     }
-
+    main ul li{
+        padding: 16px;
+    }
     main ul li h4 {
         font-size: 18px;
         line-height: 24px;
         margin-bottom: 6px;
     }
+
+    main ul li h4 a{
+        font-size: 14px;
+        line-height: 18px;
+    }
+
     main ul li p {
         margin-top: 4px;
     }

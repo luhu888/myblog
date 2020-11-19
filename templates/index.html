@@ -37,7 +37,7 @@
     <ul>
         {% for i in activity %}
         <li>
-            <h4><a href="/new_user/activity/{{ i.id }}.html">{{ i.activity_name }}</a></h4>
+            <h4><span>{{ i.activity_name }}</span><a href="/new_user/activity/{{ i.id }}.html">查看详情</a></h4>
             <p>
                 <span><i class="iconfont timeFlag" >&#xe67d;</i> {{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
                 <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
@@ -51,7 +51,7 @@
     <ul>
         {% for i in activity %}
         <li>
-            <h4>{{ i.activity_name }}</h4>
+            <h4><span>{{ i.activity_name }}</span></h4>
             <p>
                 <span><i class="iconfont timeFlag" >&#xe67d;</i>{{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
                 <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
