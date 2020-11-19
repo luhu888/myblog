@@ -25,7 +25,7 @@ class MyUserAdmin(UserAdmin):
 
 @admin.register(BadmintonActivity)
 class BadmintonActivityAdmin(admin.ModelAdmin):
-    list_display = ['activity_number', 'activity_name', 'is_full', 'activity_place', 'activity_start_time', 'activity_end_time', 'is_alive', 'limit_count']
+    list_display = ['activity_number', 'activity_name', 'is_full', 'activity_place', 'activity_start_time', 'activity_end_time', 'is_alive', 'limit_count', 'is_cancel', 'is_operate']
 
 
 @admin.register(BadmintonActivityDetails)

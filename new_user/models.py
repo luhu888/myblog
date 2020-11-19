@@ -21,6 +21,8 @@ class BadmintonActivity(models.Model):
     is_full = models.BooleanField('是否订满', default=False)
     limit_count = models.IntegerField('人数限制', default=100)
     activity_place = models.CharField('活动地点', max_length=100, default='')
+    is_cancel = models.BooleanField('活动取消', default=False)
+    is_operate = models.BooleanField('可取消报名', default=True)
 
     class Meta:
         verbose_name = '活动列表'
