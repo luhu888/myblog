@@ -118,6 +118,7 @@ def activityView(request, number):
     activity_time = str(activity_start_time) + '-' + str(activity_end_time) + ' 周' + week_change[str(activity_week)]
     activity_place = str(BadmintonActivity.objects.get(activity_number=int(number)).activity_place)
     join_count = str(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).count())
+    is_operate = BadmintonActivity.objects.get(activity_number=int(number)).is_operate
     surplus = str(12 - int(join_count))
     logger.info(activity_place)
     for i in activityDetails:
@@ -132,9 +133,12 @@ def activityView(request, number):
             join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
             join_person.save()
         elif action == 'cancel':
-            tips = '取消报名成功'
-            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-            # logger.info(txt1)
+            if is_operate:
+                tips = '取消报名成功！'
+                cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+                # logger.info(txt1)
+            else:
+                tips = '活动开始前一天不允许取消报名！！！'
         elif action == 'substitution':
             tips = '替补成功'
             substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
