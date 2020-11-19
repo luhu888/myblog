@@ -129,9 +129,12 @@ def activityView(request, number):
             tips = '您已成功报名，请勿重复报名'
             # logger.info(tips)
         elif action == 'join':
-            tips = '报名成功'
-            join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
-            join_person.save()
+            if is_full:
+                tips = '该活动已订满'
+            else:
+                tips = '报名成功'
+                join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
+                join_person.save()
         elif action == 'cancel':
             if is_operate:
                 tips = '取消报名成功！'
@@ -140,10 +143,13 @@ def activityView(request, number):
             else:
                 tips = '活动开始前一天不允许取消报名！！！'
         elif action == 'substitution':
-            tips = '替补成功'
-            substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
-                                                             is_substitution=True)
-            substitution_activity.save()
+            if is_full:
+                tips = '替补成功'
+                substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
+                                                                 is_substitution=True)
+                substitution_activity.save()
+            else:
+                tips = '该活动未订满，请直接报名'
             logger.info(tips)
         elif action == 'cancel_substitution':
             tips = '取消替补成功'
