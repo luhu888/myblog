@@ -5,7 +5,7 @@ git add .
 git commit -m "init dev"
 git .ignore没有生效的解决办法：git清除本地缓存
 git rm -r --cached .
-git add .
+git add ./new 添加修改的文件
 git commit -m 'update .gitignore'
 git push -u origin master //第一次提交才需要写这么长，后续直接git push就可以
 
@@ -22,3 +22,5 @@ git push code 分支B 提交解决冲突后的代码
 git remote -v 查看远程仓库
 git fetch upstream 拉取上游最新代码
 git merge upstream/tests 合并上游拉下来的最新代码与本地test2分支代码
+git push origin local_branch:remote_branch  推送到指定远程分支
+

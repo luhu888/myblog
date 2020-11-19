@@ -39,7 +39,7 @@
         <li>
             <h4><a href="/new_user/activity/{{ i.id }}.html">{{ i.activity_name }}</a></h4>
             <p>
-                <span><i class="iconfont timeFlag" >&#xe67d;</i> {{ i.activity_start_time}}</span>
+                <span><i class="iconfont timeFlag" >&#xe67d;</i> {{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
                 <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
                 <span><i class="iconfont fullFlag" >&#xe6b9;</i> <em>{{ i.is_full}}</em></span>
             </p>
@@ -53,7 +53,7 @@
         <li>
             <h4>{{ i.activity_name }}</h4>
             <p>
-                <span><i class="iconfont timeFlag" >&#xe67d;</i> {{ i.activity_start_time}}</span>
+                <span><i class="iconfont timeFlag" >&#xe67d;</i>{{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
                 <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
                 <span><i class="iconfont fullFlag" >&#xe6b9;</i> <em>{{ i.is_full}}</em></span>
             </p>

@@ -7,5 +7,5 @@ urlpatterns = [
     path('setpassword.html', views.setpasswordView, name='setpassword'),
     path('logout.html', views.logoutView, name='logout'),
     path('activity/<int:number>.html', views.activityView, name='activity'),
-
+    path('register_api', views.my_api, name='register_api')
 ]

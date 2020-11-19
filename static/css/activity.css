@@ -131,6 +131,7 @@ html{
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     width: 30vw;
     height: 15vw;
     padding:16px ;
@@ -140,8 +141,20 @@ html{
     font-size: 18px;
 }
 
+.pop p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    margin-top: -40px;
+    line-height: 18px;
+}
 .pop button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
     margin-top: 40px;
+    transform:translate(-50%,-50%);
     background-color: rgb(46, 164, 79);
     color: #fff;
     padding: 5px 16px;
@@ -155,8 +168,12 @@ html{
         font-size: 14px;
     }
 
+    .pop p{
+        margin-top: -16px;
+    }
     .pop button{
         padding: 3px 10px;
+        max-width:52px;
         margin-top: 10px;
     }
 }

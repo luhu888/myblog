@@ -17,7 +17,6 @@ $(document).ready(function(){
             $(".pop p").text(text2)
                 $(".pop").fadeIn(200)
                 $(".mask").fadeIn(200)
-
         })
         $(".pop button").click(()=>{
             $(".pop").fadeOut(200)

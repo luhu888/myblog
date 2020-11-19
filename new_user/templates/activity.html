@@ -16,6 +16,7 @@
     <script src="{% static 'js/signUpForActivity.js' %}"></script>
     <script src="{% static 'js/activity.js' %}"></script>
 
+
 </head>
 
     <body>
@@ -42,9 +43,8 @@
    </header>
 
    <nav>
-       <!--   已有 <span>10</span> 人报名， <span>3</span> 人替补，已满员可报名替补。-->
-       <div>已有 <span>10</span> 人报名，余 <span>2</span> 个名额，满员后仅可替补。</div>
-      {% csrf_token %}
+       <div>已有 <span>{{ join_count }}</span> 人报名，余 <span>{{ surplus }}</span> 个名额，满员后仅可替补。</div>
+      <!--{% csrf_token %}-->
            <button id="signUpForActivity">
            {% if not is_join and not is_full %}
            <input type="hidden" name='join' value="join">
@@ -65,12 +65,20 @@
        <div class="tab">
            <h3>活动详情</h3>
            <p>
-               <span><i class="iconfont timeFlag">&#xe67d;</i> {{ i.activity_start_time}}</span>
-               <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
+               <span><i class="iconfont timeFlag">&#xe67d;</i> {{ activity_time }}</span><br>
+               {% if username %}
+               <span><i class="iconfont placeFlag" >&#xe609;</i><a href="{% static 'html/aMap.html' %}"> {{ activity_place }}</a></span>
+                {% else %}
+               <span><i class="iconfont placeFlag" >&#xe609;</i> {{ activity_place }}</span>
+                {% endif%}
            </p>
        </div>
        <div class="persons">
            <ul>
+               <li>
+                   <span>报名人员</span>
+                   <span>是否替补</span>
+               </li>
            {% for key, value in new_join_dic.items %}
                <li>
                    <span>{{ key }}</span>

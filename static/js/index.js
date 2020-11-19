@@ -4,9 +4,9 @@ $(document).ready(function(){
     fullList.each((index,element)=>{
         $(element).text()
         if($(element).text()==="True"){
-            $(element).text("满员").prev().addClass("full")
+            $(element).text("已订满").prev().addClass("full")
         }else{
-            $(element).text("未满员").removeClass("full")
+            $(element).text("报名中").removeClass("full")
         }
     })
 })
