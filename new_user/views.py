@@ -113,6 +113,7 @@ def activityView(request, number):
     activity_time = str(activity_start_time) + '-' + str(activity_end_time) + ' 周' + week_change[str(activity_week)]
     activity_place = str(BadmintonActivity.objects.get(activity_number=int(number)).activity_place)
     join_count = str(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).count())
+    surplus = str(12 - int(join_count))
     logger.info(activity_place)
     for i in activityDetails:
         for j in join_dic.keys():
