@@ -88,24 +88,6 @@
            </ul>
        </div>
   </main>
-    <div class="sign">
-        <!--{% csrf_token %}-->
-        <button >
-            {% if not is_join and not is_full %}
-            <input type="hidden" name='join' value="join">
-            报名
-            {% elif is_join %}
-            <input type="hidden" name='cancel' value="cancel">
-            取消报名
-            {% elif not is_join and is_full and not is_substitution %}
-            <input type="hidden" name='substitution' value="substitution">
-            报名替补
-            {% elif is_substitution %}
-            <input type="hidden" name='cancel_substitution' value="cancel_substitution">
-            取消替补
-            {% endif %}
-        </button>
-    </div>
 
     </body>
 </html>
