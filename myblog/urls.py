@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-
-
 from blog import views
+# from new_user import views
 from django.views.static import serve
 # 导入静态文件模块
 from django.conf import settings
@@ -32,3 +31,5 @@ urlpatterns = [
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs
 ]
+handler404 = views.page_not_found
+handler500 = views.page_error

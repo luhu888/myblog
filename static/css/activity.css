@@ -7,7 +7,7 @@ nav{
     padding: 16px;
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 18px;
 }
 nav  div{
     display: inline-block;
@@ -17,11 +17,18 @@ nav  div{
 nav button{
     background-color: rgb(46, 164, 79);
     color: #fff;
-    padding: 5px 16px;
+    padding: 8px 16px;
     border-radius: 6px;
     margin-left: 0;
     margin-right: 0;
+    font-size: 18px;
 }
+
+nav button.disabled{
+    color: rgb(106, 115, 125);
+    background-color: rgba(106, 115, 125,0.5);
+}
+
 @media (max-width: 600px) {
     nav{
         margin-bottom:10px ;
@@ -30,7 +37,8 @@ nav button{
     }
     nav  button{
         width: 100px;
-        padding: 6px 10px;
+        padding: 3px 8px;
+        font-size: 14px;
     }
 }
 main{
@@ -52,12 +60,14 @@ main .tab h3{
 main .tab h3{
     margin-bottom: 10px;
 }
-main .tab  span{
-    display: inline-block;
-    margin-right: 16px;
+main .tab  p{
     font-size:16px;
+    line-height: 24px;
 }
-main .tab  span i{
+main .tab   a{
+    color: rgb(3, 104, 214);
+}
+main .tab  p i{
     font-size: 20px;
 }
 @media (max-width: 600px) {
@@ -73,11 +83,11 @@ main .tab  span i{
     main .tab h3{
         margin-bottom: 6px;
     }
-    main .tab  span{
-        margin-right: 10px;
+    main .tab  p{
         font-size:14px ;
+        line-height: 20px;
     }
-    main .tab  span i{
+    main .tab  p i{
         font-size: 18px;
     }
 }
@@ -94,9 +104,24 @@ main .persons ul li{
     padding: 8px 16px;
     border-bottom: 1px solid rgb(234, 236, 239);
 }
+main .persons ul .personsTab{
+    background-color: rgb(250,251,252);
+}
+
+main .persons ul li .substitute{
+    display: inline-block;
+    width: 72px;
+    text-align: center;
+}
+
 @media (max-width: 600px) {
     main .persons ul li{
         padding: 4px 10px;
+    }
+    main .persons ul li .substitute{
+        display: inline-block;
+        width: 64px;
+        text-align: center;
     }
 }
 
@@ -128,12 +153,8 @@ html{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    width: 30vw;
-    height: 15vw;
+    width: 20vw;
+    height: 10vw;
     padding:16px ;
     text-align: center;
     border-radius: 6px;
@@ -142,38 +163,43 @@ html{
 }
 
 .pop p{
+    width: 20vw;
     position: absolute;
     top: 50%;
     left: 50%;
     transform:translate(-50%,-50%);
-    margin-top: -40px;
-    line-height: 18px;
+    /*有button在需要设置margin*/
+    /*margin-top: -20px;*/
 }
 .pop button{
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 40px;
+    margin-top: 20px;
     transform:translate(-50%,-50%);
     background-color: rgb(46, 164, 79);
     color: #fff;
-    padding: 5px 16px;
+    padding: 8px 16px;
     border-radius: 6px;
+    font-size: 18px;
 }
 @media (max-width: 600px) {
     .pop {
-        width: 40vw;
-        padding: 10px;
-        height: 20vw;
-        font-size: 14px;
+        width: 50vw;
+        padding: 8px;
+        height: 30vw;
+        font-size: 16px;
     }
 
     .pop p{
-        margin-top: -16px;
+        width: 100%;
+        padding: 5px;
+        /*margin-top: -20px;*/
     }
     .pop button{
-        padding: 3px 10px;
+        padding: 5px 10px;
         max-width:52px;
-        margin-top: 10px;
+        margin-top: 20px;
+        font-size: 16px;
     }
 }

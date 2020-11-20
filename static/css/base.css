@@ -3,7 +3,7 @@
 body {
     background-color: rgb(247, 247, 247);
     font-size: 18px;
-color：rgb(36,41,46);
+    color：rgb(36,41,46);
 }
 @media(max-width: 600px){
     body {

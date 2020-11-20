@@ -161,13 +161,23 @@ def activityView(request, number):
 
 
 @csrf_exempt
+def page_not_found(request):
+    return render_to_response('404.html')
+
+
+@csrf_exempt
+def page_error(request):
+    return render_to_response( '500.html')
+
+
+@csrf_exempt
 def my_api(request):
     if request.method == 'POST':
         username = request.POST.get('username', '')
         weChat = request.POST.get('weChat', '')
         password = request.POST.get('password', '')
         try:
-            user = User.objects.create_user(username=username, password=password, weChat=base64.b64encode(weChat.encode('utf8')))
+            user = User.objects.create_user(username=username, password=password, weChat=weChat)
             user.save()
         except Exception as e:
             print(e)
