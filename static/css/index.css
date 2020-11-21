@@ -57,14 +57,18 @@ main ul li p {
 }
 main ul li p span{
     display: inline-block;
-    margin-right: 16px;
     font-size:16px ;
 }
 
 main ul li p span i{
     font-size: 20px;
 }
-
+main ul li p .time{
+    width: 265px;
+}
+main ul li p .place{
+    width: 150px;
+}
 @media (max-width: 600px) {
     main {
         padding: 10px;
@@ -88,9 +92,13 @@ main ul li p span i{
     }
     main ul li p span{
         font-size:14px ;
-        margin-right: 10px;
     }
-
+    main ul li p .time{
+        width: 235px;
+    }
+    main ul li p .place{
+        width: 130px;
+    }
     main ul li p span i{
         font-size: 18px;
     }
