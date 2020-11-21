@@ -54,6 +54,7 @@ main ul li p {
     max-width: 1200px;
     margin-top: 5px;
     color:rgb(88,96,105);
+    line-height: 24px;
 }
 main ul li p span{
     display: inline-block;
@@ -74,7 +75,7 @@ main ul li p .place{
         padding: 10px;
     }
     main ul li{
-        padding: 16px;
+        padding: 16px 16px 12px 16px;
     }
     main ul li h4 {
         font-size: 18px;
