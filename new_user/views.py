@@ -1,25 +1,16 @@
 import base64
-
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-
 from new_user.models import MyUser as User  # 扩展user后使用新的MyUser
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 from django.contrib.auth import login, logout, authenticate
 import logging
-# from django import forms
 
 
 logger = logging.getLogger('django')
-
-week_change = {'1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六一', '7': '日'}
-
-# class UserForm(forms.Form):
-#     name = forms.CharField(min_length=4, label='用户名', required=True, help_text='必填')   # 必须用required
-#     pwd = forms.CharField(min_length=4, label='密码', required=True, help_text='必填')
-#     weChat = forms.CharField(min_length=4, label='微信号', required=True, help_text='必填')
+week_change = {'1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六', '7': '日'}
 
 
 # 用户登录
@@ -36,12 +27,15 @@ def loginView(request):    # 设置标题和另外两个URL链接
             user = authenticate(username=username, password=password)
             if user:
                 if user.is_active:
+                    logger.info('账号是有效的')
                     login(request, user)
                     return redirect('/')
-                else:
-                    tips = '账号密码错误，请重新输入'
             else:
-                tips = '用户不存在，请注册'
+                logger.info('账号密码错误，请重新输入')
+                tips = '账号密码错误，请重新输入'
+        else:
+            logger.info('用户不存在')
+            tips = '用户不存在，请注册'
     return render(request, 'user.html', locals())
 
 
@@ -167,7 +161,7 @@ def page_not_found(request):
 
 @csrf_exempt
 def page_error(request):
-    return render_to_response( '500.html')
+    return render_to_response('500.html')
 
 
 @csrf_exempt
@@ -180,6 +174,7 @@ def my_api(request):
             user = User.objects.create_user(username=username, password=password, weChat=weChat)
             user.save()
         except Exception as e:
-            print(e)
+            logger.info(e)
             return HttpResponse("注册失败")
         return HttpResponse("注册成功")
+    

@@ -23,4 +23,4 @@ git remote -v 查看远程仓库
 git fetch upstream 拉取上游最新代码
 git merge upstream/tests 合并上游拉下来的最新代码与本地test2分支代码
 git push origin local_branch:remote_branch  推送到指定远程分支
-
+删除本地已合并的分支： git branch -d [branchname]
