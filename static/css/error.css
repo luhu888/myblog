@@ -1,0 +1,51 @@
+main {
+    width: 100%;
+}
+
+main section {
+    width: 100%;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    color:rgb(254, 254, 254);
+    background-color: rgb(36, 41, 46);
+    text-align: center;
+}
+
+main section  div{
+    padding-top: 32px;
+    padding-bottom: 32px;
+    font-size: 100px;
+}
+main section  div p{
+    line-height: 100px;
+}
+main section  span{
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: #fff;
+    color:  rgb(36, 41, 46);
+    font-size: 80px;
+}
+.return{
+    font-size: 22px;
+    text-align: center;
+    margin-top: 64px;
+    font-weight: 700;
+    color: rgb(3, 104, 214);
+}
+@media(max-width:600px){
+    main section  div{
+        font-size: 80px;
+    }
+    main section  span{
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+    .return{
+        font-size: 18px;
+    }
+}

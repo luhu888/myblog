@@ -25,22 +25,22 @@
             <h3>{% csrf_token %}</h3>
             <label>
                 <span>用户名:</span>
-                <input type="text" name='username'>
+                <input type="text" name='username' required="required">
             </label>
             {% if title == '注册' %}
             <label>
                 <span>微信号:</span>
-                <input type="text" name='weChat'>
+                <input type="text" name='weChat' required="required">
             </label>
             {% endif %}
             <label>
                 <span>密码:</span>
-                <input type="password" name='password'>
+                <input type="password" name='password' required="required">
             </label>
             {% if new_password %}
             <label>
                 <span>新密码:</span>
-                <input type="password" name='new_password'>
+                <input type="password" name='new_password' required="required">
             </label>
             {% endif %}
             <button type="submit" class="submit" >确定</button>
@@ -51,5 +51,8 @@
         </div>
     </section>
 </main>
+<footer>
+    <p><i class="iconfont">&#xe611;</i>&nbsp;期待您<a href="https://www.yuque.com/lxs/topics/1" target="_blank"> 留下 </a>使用反馈或建议，我们会不定期但尽快的回复奥</p>
+</footer>
 </body>
 </html>
