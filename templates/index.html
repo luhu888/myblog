@@ -12,8 +12,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/header_index_activity.css' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}" ></script>
+    <script src="{% static 'js/index.js' %}" ></script>
 
 </head>
 
@@ -39,9 +39,9 @@
         <li>
             <h4><span>{{ i.activity_name }}</span><a href="/new_user/activity/{{ i.id }}.html">查看详情</a></h4>
             <p>
-                <span><i class="iconfont timeFlag" >&#xe67d;</i> {{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
-                <span><i class="iconfont placeFlag" >&#xe609;</i> <a href="{% static 'html/aMap.html' %}"> {{ i.activity_place}}</a></span>
-                <span><i class="iconfont fullFlag" >&#xe6b9;</i> <em>{{ i.is_full}}</em></span>
+                <span class="time"><i class="iconfont timeFlag" >&#xe67d;</i>&nbsp;{{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
+                <span class="place"><i class="iconfont placeFlag" >&#xe609;</i>&nbsp;{{ i.activity_place}}</span>
+                <span ><i class="iconfont fullFlag" >&#xe6b9;</i> <em>&nbsp;{{ i.is_full}}</em></span>
             </p>
         </li>
         {% endfor %}
@@ -53,17 +53,18 @@
         <li>
             <h4><span>{{ i.activity_name }}</span></h4>
             <p>
-                <span><i class="iconfont timeFlag" >&#xe67d;</i>{{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
-                <span><i class="iconfont placeFlag" >&#xe609;</i> {{ i.activity_place}}</span>
-                <span><i class="iconfont fullFlag" >&#xe6b9;</i> <em>{{ i.is_full}}</em></span>
+                <span class="time"><i class="iconfont timeFlag" >&#xe67d;</i>&nbsp;{{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
+                <span class="place"><i class="iconfont placeFlag" >&#xe609;</i>&nbsp;{{ i.activity_place}}</span>
+                <span ><i class="iconfont fullFlag" >&#xe6b9;</i> <em>&nbsp;{{ i.is_full}}</em></span>
             </p>
         </li>
         {% endfor %}
     </ul>
-
         {% endif %}
 
 </main>
-</div>
+<footer>
+    <p><i class="iconfont">&#xe611;</i>&nbsp;期待您<a href="https://www.yuque.com/lxs/topics/1" target="_blank"> 留下 </a>使用反馈或建议，我们会不定期但尽快的回复奥</p>
+</footer>
 </body>
 </html>

@@ -34,13 +34,11 @@ header ul li a {
         height: 60px;
         margin-bottom: 10px;
     }
-
     header ul {
         line-height: 60px;
         padding-left: 10px;
         padding-right: 10px;
     }
-
     header ul li a {
         font-size: 14px;
     }

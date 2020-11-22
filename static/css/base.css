@@ -26,12 +26,12 @@ main .tips {
 }
 @font-face {
     font-family: 'iconfont';  /* project id 2204267 */
-    src: url('//at.alicdn.com/t/font_2204267_wujuduy0xo.eot');
-    src: url('//at.alicdn.com/t/font_2204267_wujuduy0xo.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_2204267_wujuduy0xo.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_2204267_wujuduy0xo.woff') format('woff'),
-    url('//at.alicdn.com/t/font_2204267_wujuduy0xo.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_2204267_wujuduy0xo.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_2204267_sog20s4vy7.eot');
+    src: url('//at.alicdn.com/t/font_2204267_sog20s4vy7.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_2204267_sog20s4vy7.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_2204267_sog20s4vy7.woff') format('woff'),
+    url('//at.alicdn.com/t/font_2204267_sog20s4vy7.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_2204267_sog20s4vy7.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;
@@ -52,4 +52,31 @@ main .tips {
 }
 .full{
     color:rgb(227, 76, 38);;
+}
+footer {
+    font-size: 14px;
+    margin-top: 20px;
+    max-width: 1200px;
+    color:rgb(88, 96, 105);
+    padding-left: 30px;
+    padding-right: 30px;
+}
+footer i{
+    font-size: 20px;
+}
+footer a{
+    color: rgb(3, 104, 214);
+}
+@media (max-width: 600px) {
+    footer {
+        position: fixed;
+        bottom: 20px;
+        margin-top: 30px;
+        font-size: 12px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    footer i{
+        font-size: 18px;
+    }
 }
