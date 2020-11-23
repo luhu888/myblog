@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']   # 加星表示任何域名都可以访问
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,8 +89,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myblog',
         'USER': 'root',
-        'PASSWORD': 'root',
-        #  'PASSWORD': 'luhu199515lbh',
+        # 'PASSWORD': 'root',
+        'PASSWORD': 'luhu199515lbh',
 
         'HOST': 'localhost',
         'PORT': '3306',
@@ -127,17 +128,15 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
-)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, '/static/'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
@@ -145,7 +144,8 @@ AUTH_USER_MODEL = 'new_user.MyUser'   # 指定新的用户model
 
 cur_path = os.path.dirname(os.path.realpath(__file__))  # log_path是存放日志的路径
 log_path = os.path.join(os.path.dirname(cur_path), 'logs')
-if not os.path.exists(log_path): os.mkdir(log_path)  # 如果不存在这个logs文件夹，就自动创建一个
+if not os.path.exists(log_path):
+    os.mkdir(log_path)  # 如果不存在这个logs文件夹，就自动创建一个
 
 LOGGING = {
     'version': 1,

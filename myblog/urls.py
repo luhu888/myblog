@@ -20,16 +20,21 @@ from blog import views
 from django.views.static import serve
 # 导入静态文件模块
 from django.conf import settings
+from django.views.generic.base import RedirectView
 # 导入配置文件里的文件上传配置
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ueditor/', include('DjangoUeditor.urls')),  # 添加DjangoUeditor的URL
     re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),    # 增加此行
     path('', views.index),  # 里面留空，代表首页
-    path('new_user/', include('new_user.urls'))
+    path('new_user/', include('new_user.urls')),
+    re_path(r'^favicon.ico$', RedirectView.as_view(url=r'static/images/favicon.ico'))
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs
 ]
 handler404 = views.page_not_found
 handler500 = views.page_error
+admin.site.site_header = "小羽毛报名系统"
+admin.site.site_title = "小羽毛报名系统"
+admin.site.index_title = "欢迎进入小羽毛报名系统"

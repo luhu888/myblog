@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class MyUser(AbstractUser):
-    weChat = models.CharField('微信账号', max_length=100, blank=True, unique=True)
+    weChat = models.CharField('微信群昵称', max_length=100, blank=True, unique=True)
     # objects = UserManager()
 
     def __str__(self):
@@ -23,6 +23,7 @@ class BadmintonActivity(models.Model):
     activity_place = models.CharField('活动地点', max_length=100, default='')
     is_cancel = models.BooleanField('活动取消', default=False)
     is_operate = models.BooleanField('可取消报名', default=True)
+    place_number = models.CharField('场地号', max_length=100, default='')
 
     class Meta:
         verbose_name = '活动列表'
@@ -36,6 +37,7 @@ class BadmintonActivityDetails(models.Model):
     activity_number = models.ForeignKey(BadmintonActivity, on_delete=models.CASCADE, verbose_name='活动编号', default=1)
     join_weChat = models.ForeignKey(MyUser, on_delete=models.CASCADE, verbose_name='报名人员')
     is_substitution = models.BooleanField(verbose_name='是否替补', default=False)
+    operate_time = models.DateTimeField(verbose_name='操作时间', default=timezone.now)
 
     class Meta:
         unique_together = ('activity_number', 'join_weChat', 'is_substitution')   # 多个字段联合唯一约束
