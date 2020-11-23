@@ -5,6 +5,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from new_user.models import BadmintonActivity, BadmintonActivityDetails
 from blog.models import Article
+import logging
+
+
+logger = logging.getLogger('django')
 
 
 def index1(request):
@@ -41,6 +45,8 @@ def index1(request):
 def index(request):
     username = request.user.username
     activity = BadmintonActivity.objects.filter(is_alive=False)
+    # for i in activity:
+        # logger.info(i.is_full)
     context = {
         'activity': activity,
     }

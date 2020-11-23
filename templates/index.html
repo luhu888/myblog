@@ -37,11 +37,11 @@
     <ul>
         {% for i in activity %}
         <li>
-            <h4><span>{{ i.activity_name }}</span><a href="/new_user/activity/{{ i.id }}.html">查看详情</a></h4>
+            <h4><span>{{ i.activity_name }}</span><a href="/new_user/activity/{{ i.activity_number }}.html">查看详情</a></h4>
             <p>
                 <span class="time"><i class="iconfont timeFlag" >&#xe67d;</i>&nbsp;{{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
                 <span class="place"><i class="iconfont placeFlag" >&#xe609;</i>&nbsp;{{ i.activity_place}}</span>
-                <span ><i class="iconfont fullFlag" >&#xe6b9;</i> <em>&nbsp;{{ i.is_full}}</em></span>
+                <span ><i class="iconfont fullFlag" >&#xe6b9;</i>&nbsp; <em>{{ i.is_full}}</em></span>
             </p>
         </li>
         {% endfor %}
@@ -53,9 +53,9 @@
         <li>
             <h4><span>{{ i.activity_name }}</span></h4>
             <p>
-                <span class="time"><i class="iconfont timeFlag" >&#xe67d;</i>&nbsp;{{ i.activity_start_time}}-{{i.activity_end_time.time}}</span>
-                <span class="place"><i class="iconfont placeFlag" >&#xe609;</i>&nbsp;{{ i.activity_place}}</span>
-                <span ><i class="iconfont fullFlag" >&#xe6b9;</i> <em>&nbsp;{{ i.is_full}}</em></span>
+                <span class="time"><i class="iconfont timeFlag" >&#xe67d;</i>&nbsp;{{ i.activity_start_time }}-{{i.activity_end_time.time}}</span>
+                <span class="place"><i class="iconfont placeFlag" >&#xe609;</i>&nbsp;{{ i.activity_place }}</span>
+                <span ><i class="iconfont fullFlag" >&#xe6b9;</i>&nbsp; <em>{{ i.is_full }}</em></span>
             </p>
         </li>
         {% endfor %}
@@ -64,7 +64,7 @@
 
 </main>
 <footer>
-    <p><i class="iconfont">&#xe611;</i>&nbsp;期待您<a href="https://www.yuque.com/lxs/topics/1" target="_blank"> 留下 </a>使用反馈或建议，我们会不定期但尽快的回复奥</p>
+    <p><i class="iconfont">&#xe611;</i>&nbsp;期待您<a href="https://www.yuque.com/lxs/topics/1"> 留下 </a>使用反馈或建议，我们会不定期但尽快的回复奥</p>
 </footer>
 </body>
 </html>

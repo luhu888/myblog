@@ -28,6 +28,7 @@ def loginView(request):    # 设置标题和另外两个URL链接
             if user:
                 if user.is_active:
                     logger.info('账号是有效的')
+                    logger.info(user)
                     login(request, user)
                     return redirect('/')
             else:
@@ -97,23 +98,27 @@ def logoutView(request):
 
 
 def activityView(request, number):
+    activity_id = BadmintonActivity.objects.get(activity_number=number).id
+    logger.info(activity_id)
     username = request.user.username
-    activityDetails = BadmintonActivityDetails.objects.filter(activity_number_id=int(number))
+    activityDetails = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id))
     join_dic = {}
     new_join_dic = {}
-    is_join = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=False)
-    is_substitution = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id, is_substitution=True)
-    is_full = BadmintonActivity.objects.filter(id=int(number)).values_list('is_full')[0][0]
+    is_join = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id), join_weChat_id=request.user.id, is_substitution=False)
+    is_substitution = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id), join_weChat_id=request.user.id, is_substitution=True)
+    is_full = BadmintonActivity.objects.filter(activity_number=int(number)).values_list('is_full')[0][0]
     action = request.POST.get("action", '')
-    join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).values_list('join_weChat', 'is_substitution'))
+    join_dic = dict(BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id)).values_list('join_weChat', 'is_substitution').order_by('is_substitution'))
+    logger.info(join_dic)
     activity_end_time = BadmintonActivity.objects.get(activity_number=int(number)).activity_end_time.strftime('%H:%M')
     activity_start_time = BadmintonActivity.objects.get(activity_number=int(number)).activity_start_time.strftime("%Y-%m-%d %H:%M")
     activity_week = BadmintonActivity.objects.get(activity_number=int(number)).activity_start_time.isoweekday()
     activity_time = str(activity_start_time) + '-' + str(activity_end_time) + ' 周' + week_change[str(activity_week)]
     activity_place = str(BadmintonActivity.objects.get(activity_number=int(number)).activity_place)
-    join_count = str(BadmintonActivityDetails.objects.filter(activity_number_id=int(number)).count())
+    limit_count = BadmintonActivity.objects.get(activity_number=int(number)).limit_count
+    join_count = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id)).count()  # is_substitution=0
     is_operate = BadmintonActivity.objects.get(activity_number=int(number)).is_operate
-    surplus = str(12 - int(join_count))
+    surplus = str(limit_count - join_count)
     logger.info(activity_place)
     for i in activityDetails:
         for j in join_dic.keys():
@@ -121,25 +126,25 @@ def activityView(request, number):
     if request.method == 'POST':
         if bool(is_join) and action == 'join':
             tips = '您已成功报名，请勿重复报名'
-            # logger.info(tips)
+            logger.info(tips)
         elif action == 'join':
             if is_full:
                 tips = '该活动已订满'
             else:
                 tips = '报名成功'
-                join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number))
+                join_person = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(activity_id))
                 join_person.save()
         elif action == 'cancel':
             if is_operate:
                 tips = '取消报名成功！'
-                cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
+                cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id), join_weChat_id=request.user.id).delete()
                 # logger.info(txt1)
             else:
                 tips = '活动开始前一天不允许取消报名！！！'
         elif action == 'substitution':
             if is_full:
                 tips = '替补成功'
-                substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(number),
+                substitution_activity = BadmintonActivityDetails(join_weChat_id=request.user.id, activity_number_id=int(activity_id),
                                                                  is_substitution=True)
                 substitution_activity.save()
             else:
@@ -147,10 +152,13 @@ def activityView(request, number):
             logger.info(tips)
         elif action == 'cancel_substitution':
             tips = '取消替补成功'
-            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(number), join_weChat_id=request.user.id).delete()
-        context = {'activity': activityDetails, 'user_info': new_join_dic, "tips": tips, "activity_time": activity_time}
-        logger.info(tips)
-    logger.info(new_join_dic)
+            cancel_activity = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id), join_weChat_id=request.user.id).delete()
+        # context = {'activity': activityDetails, 'user_info': new_join_dic, "tips": tips, "activity_time": activity_time}
+            logger.info(tips)
+    if join_count >= limit_count:
+        change_limit = BadmintonActivity.objects.get(activity_number=int(number))
+        change_limit.is_full = 1
+        change_limit.save()
     return render(request, 'activity.html', locals())
 
 
@@ -177,4 +185,9 @@ def my_api(request):
             logger.info(e)
             return HttpResponse("注册失败")
         return HttpResponse("注册成功")
-    
+
+
+# def check_full(request):
+#     if request.method == 'POST':
+#         activity_num = request.POST.get('activity_num', '')
+#         ret = BadmintonActivityDetails.objects.filter()
