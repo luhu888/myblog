@@ -28,7 +28,7 @@ SECRET_KEY = 'k-)efxao!irze6^i2u@cryrysw&q4h2qn(zts6-r6d1*4@rh4@'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']   # 加星表示任何域名都可以访问
-
+SIMPLEUI_HOME_INFO = False
 
 # Application definition
 
