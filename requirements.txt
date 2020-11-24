@@ -2,3 +2,5 @@ Django==2.1.1
 Pillow==7.2.0
 PyMySQL==0.10.0
 pytz==2020.1
+django-simpleui==2020.9.26
+uWSGI==2.0.19.1
