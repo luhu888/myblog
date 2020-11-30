@@ -28,7 +28,8 @@ urlpatterns = [
     re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),    # 增加此行
     path('', views.index),  # 里面留空，代表首页
     path('new_user/', include('new_user.urls')),
-    re_path(r'^favicon.ico$', RedirectView.as_view(url=r'static/images/favicon.ico'))
+    re_path(r'^favicon.ico$', RedirectView.as_view(url=r'static/images/favicon.ico')),
+    # path('blog/', include('blog.urls')),
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs
