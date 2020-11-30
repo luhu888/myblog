@@ -15,9 +15,9 @@ import time
 import logging
 import django.utils.log
 import logging.handlers
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k-)efxao!irze6^i2u@cryrysw&q4h2qn(zts6-r6d1*4@rh4@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']   # 加星表示任何域名都可以访问
 SIMPLEUI_HOME_INFO = False
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'DjangoUeditor',   # 注册APP应用
     'new_user',
-    # 'rest_framework',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -137,7 +137,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, '/static/'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
@@ -147,6 +147,13 @@ cur_path = os.path.dirname(os.path.realpath(__file__))  # log_path是存放日�
 log_path = os.path.join(os.path.dirname(cur_path), 'logs')
 if not os.path.exists(log_path):
     os.mkdir(log_path)  # 如果不存在这个logs文件夹，就自动创建一个
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
 
 LOGGING = {
     'version': 1,

@@ -1,7 +1,13 @@
-from django.conf.urls import url
-from blog import views
+from django.urls import path, include
+from rest_framework import routers
+
+from blog.views import UserViewSet
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
 
 urlpatterns = [
-    # url('category_api/', views.category_list),
-    # url(r'^snippets/(?P<pk>[0-9]+)/$', views.snippet_detail),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -1,8 +1,7 @@
 import base64
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from django.shortcuts import render, redirect, render_to_response
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect
 from new_user.models import MyUser as User  # 扩展user后使用新的MyUser
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 from django.contrib.auth import login, logout, authenticate
@@ -165,13 +164,13 @@ def activityView(request, number):
 
 @csrf_exempt
 def page_not_found(request):
-    response = render_to_response('404.html')
+    response = render('404.html')
     return response
 
 
 @csrf_exempt
 def page_error(request):
-    response = render_to_response('500.html')
+    response = render('500.html')
     return response
 
 
