@@ -7,9 +7,10 @@ import base64
 
 @admin.register(MyUser)
 class MyUserAdmin(UserAdmin):
-    def weChat(self, obj):
-        return base64.b64decode(obj.all()).decode('utf8')
-    list_display = ['username', 'weChat']
+    def my_weChat(self, obj):
+        return base64.b64decode(obj.weChat).decode('utf8')
+    list_display = ['username', 'my_weChat']
+    my_weChat.short_description = '微信群昵称'
     list_per_page = 10
     # 新增用户时，在个人信息里添加'weChat'的信息录入
     # 将源码的UserAdmin.fieldsets转换成列表格式
