@@ -1,5 +1,7 @@
 from django.urls import path
-from . import views
+from django.conf.urls import handler404, handler500
+from new_user import views
+
 
 urlpatterns = [
     path('login.html', views.loginView, name='login'),  # name为别名，在html中指代这里
@@ -10,5 +12,6 @@ urlpatterns = [
     path('activity/<int:number>.html', views.activityView, name='activity'),
     path('register_api', views.my_api, name='register_api')
 ]
+
 handler404 = views.page_not_found
 handler500 = views.page_error

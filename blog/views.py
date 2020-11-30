@@ -1,12 +1,9 @@
 from django.http import HttpResponse
-
-
-# 添加一个函数
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from new_user.models import BadmintonActivity, BadmintonActivityDetails
 from blog.models import Article
 import logging
-
+from django.views.decorators.csrf import csrf_exempt
 
 logger = logging.getLogger('django')
 
@@ -42,6 +39,7 @@ def index1(request):
     return render(request, 'index1.html', context)
 
 
+@csrf_exempt
 def index(request):
     username = request.user.username
     activity = BadmintonActivity.objects.filter(is_alive=False)
@@ -53,9 +51,10 @@ def index(request):
     return render(request, 'index.html', locals())
 
 
+@csrf_exempt
 def page_not_found(request):
-    return render(request, '404.html')
+    return render_to_response(request, '404.html')
 
 
 def page_error(request):
-    return render(request, '500.html')
+    return render_to_response(request, '500.html')
