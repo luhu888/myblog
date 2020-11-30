@@ -1,9 +1,15 @@
 from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
-from new_user.models import BadmintonActivity, BadmintonActivityDetails
-from blog.models import Article
+from django.shortcuts import render
+from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser as User
+from rest_framework import routers, serializers, viewsets
 import logging
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from blog.models import Category
+from blog.serializers import CategorySerializer
+from django.urls import path, include
+
 
 logger = logging.getLogger('django')
 
@@ -53,8 +59,52 @@ def index(request):
 
 @csrf_exempt
 def page_not_found(request):
-    return render_to_response(request, '404.html')
+    return render(request, '404.html')
 
 
 def page_error(request):
-    return render_to_response(request, '500.html')
+    return render(request, '500.html')
+
+
+class JSONResponse(HttpResponse):
+    """
+    An HttpResponse that renders its content into JSON.
+    """
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
+
+
+@csrf_exempt
+def category_list(request):
+    """
+    列出所有的code snippet，或创建一个新的snippet。
+    """
+    if request.method == 'GET':
+        category = Category.objects.all()
+        serializer = CategorySerializer(category, many=True)
+        return JSONResponse(serializer.data)
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = CategorySerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JSONResponse(serializer.data, status=201)
+        return JSONResponse(serializer.errors, status=400)
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'is_staff']
+
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+
