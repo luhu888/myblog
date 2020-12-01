@@ -5,5 +5,5 @@ migrations
 logs
 .idea/
 --ini
-myblog.ini
+mysite.ini
 .idea/*
