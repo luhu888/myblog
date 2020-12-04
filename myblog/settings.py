@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-
+import datetime
 import os
 import time
 import logging
@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k-)efxao!irze6^i2u@cryrysw&q4h2qn(zts6-r6d1*4@rh4@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']   # 加星表示任何域名都可以访问
 SIMPLEUI_HOME_INFO = False
@@ -40,10 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig',
+    'blog',
     'DjangoUeditor',   # 注册APP应用
     'new_user',
     'rest_framework',
+    # 'rest_framework.authtoken',  # 后台显示token
+    'rest_auth',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'myblog.urls'
@@ -136,13 +140,13 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 AUTH_USER_MODEL = 'new_user.MyUser'   # 指定新的用户model
-
+REST_USE_JWT = True
 cur_path = os.path.dirname(os.path.realpath(__file__))  # log_path是存放日志的路径
 log_path = os.path.join(os.path.dirname(cur_path), 'logs')
 if not os.path.exists(log_path):
@@ -150,10 +154,35 @@ if not os.path.exists(log_path):
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser',
+        # 'rest_framework.permissions.DjangoObjectPermissions',
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        # 'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'PAGE_SIZE': 10,
-}
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+       'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+       'rest_framework.authentication.SessionAuthentication',
+       # 'rest_framework.authentication.BasicAuthentication',  # token认证
+       ),}
+
+JWT_AUTH = {
+    # 自定义obtain_jwt_token返回的数据
+    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.login_utils.jwt_response_payload_handler',
+    # jwt_token的有效期
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),  # days=1 代表 token时效为1天
+    # jwt是否自动刷新
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_VERIFY': True,    # 如果密码错误，它将引发一个jwt.DecodeError
+    'JWT_VERIFY_EXPIRATION': True,    # 将过期设置为True，这意味着令牌将在一段时间后过期。 默认时间是五分钟
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',   # 需要与令牌一起发送的Authorization标头值前缀。默认值为JWT
+
+
+            }
+
 
 LOGGING = {
     'version': 1,
