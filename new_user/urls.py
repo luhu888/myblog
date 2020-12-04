@@ -1,7 +1,13 @@
 from django.urls import path
 # from django.conf.urls import handler404, handler500
-from new_user import views
+from rest_framework import routers
+from rest_framework_jwt.views import obtain_jwt_token
 
+from new_user import views
+from new_user.views import RegisterViewSet
+
+router = routers.DefaultRouter()
+router.register(r'register', RegisterViewSet)
 
 urlpatterns = [
     path('login.html', views.loginView, name='login'),  # name为别名，在html中指代这里
@@ -10,7 +16,9 @@ urlpatterns = [
     path('setpassword.html', views.setpasswordView, name='setpassword'),
     path('logout.html', views.logoutView, name='logout'),
     path('activity/<int:number>.html', views.activityView, name='activity'),
-    path('register_api', views.my_api, name='register_api')
+    path('register_api', views.my_api, name='register_api'),
+    path('api/login', obtain_jwt_token),
+
 ]
 #
 # handler404 = views.page_not_found

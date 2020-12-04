@@ -18,9 +18,11 @@ from django.urls import path, include, re_path
 from django.views.static import serve
 from django.conf.urls import *
 # 导入静态文件模块
+from rest_framework.documentation import include_docs_urls
 from blog import views
 from django.conf import settings
 from django.views.generic.base import RedirectView
+from rest_framework_jwt.views import obtain_jwt_token
 # 导入配置文件里的文件上传配置
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +32,9 @@ urlpatterns = [
     path('new_user/', include('new_user.urls')),
     re_path(r'^favicon.ico$', RedirectView.as_view(url=r'static/images/favicon.ico')),
     path('blog/', include('blog.urls')),
+    path(r'docs/', include_docs_urls(title='接口文档')),
+    path(r'api-token-auth/', obtain_jwt_token),
+    # path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs
