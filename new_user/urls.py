@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 # from django.conf.urls import handler404, handler500
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
@@ -18,6 +18,7 @@ urlpatterns = [
     path('activity/<int:number>.html', views.activityView, name='activity'),
     path('register_api', views.my_api, name='register_api'),
     path('api/login', obtain_jwt_token),
+    path('api/', include(router.urls)),
 
 ]
 #
