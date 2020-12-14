@@ -57,9 +57,10 @@ def registerView(request):
         weChat1 = request.POST.get('weChat', '')
         weChat2 = base64.b64encode(weChat1.encode('utf8'))
         weChat = str(weChat2, 'utf-8')
-
+        username_check = User.objects.filter(username=username)
+        weChat_check = User.objects.filter(weChat=weChat)
         password = request.POST.get('password', '')
-        if User.objects.filter(username=username) or User.objects.filter(weChat=weChat):
+        if username_check or weChat_check:
             tips = '用户已存在'
         elif username == '' or weChat1 == '' or password == '':
             tips = '请将注册信息填写完整'
@@ -67,6 +68,8 @@ def registerView(request):
             user = User.objects.create_user(username=username, password=password, weChat=weChat)
             user.save()
             tips = '注册成功，请登录'
+        del weChat_check
+        del username_check
     return render(request, 'user.html', locals())
 
 

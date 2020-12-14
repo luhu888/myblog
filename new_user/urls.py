@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/register', views.RegisterAPIView.as_view()),
     path('api/join', views.JoinAPIViewSet.as_view())
 
+
 ]
 #
 # handler404 = views.page_not_found
