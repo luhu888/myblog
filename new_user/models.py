@@ -34,7 +34,7 @@ class BadmintonActivity(models.Model):
 
 
 class BadmintonActivityDetails(models.Model):
-    activity_number = models.ForeignKey(BadmintonActivity, on_delete=models.CASCADE, verbose_name='活动编号', default=1)
+    activity_number = models.ForeignKey(BadmintonActivity, on_delete=models.CASCADE, related_name='tracks', verbose_name='活动编号', default=1)
     join_weChat = models.ForeignKey(MyUser, on_delete=models.CASCADE, verbose_name='报名人员')
     is_substitution = models.BooleanField(verbose_name='是否替补', default=False)
     operate_time = models.DateTimeField(verbose_name='操作时间', default=timezone.now)

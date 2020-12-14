@@ -1,13 +1,14 @@
-from django.urls import path
+from django.urls import path, include
 # from django.conf.urls import handler404, handler500
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
 
 from new_user import views
-from new_user.views import RegisterViewSet
+from new_user.views import JoinAPIViewSet
 
 router = routers.DefaultRouter()
-router.register(r'register', RegisterViewSet)
+# router.register(r'register', RegisterViewSet)
+# router.register('join', JoinAPIViewSet)
 
 urlpatterns = [
     path('login.html', views.loginView, name='login'),  # name为别名，在html中指代这里
@@ -18,6 +19,10 @@ urlpatterns = [
     path('activity/<int:number>.html', views.activityView, name='activity'),
     path('register_api', views.my_api, name='register_api'),
     path('api/login', obtain_jwt_token),
+    path('api/', include(router.urls)),
+    path('api/register', views.RegisterAPIView.as_view()),
+    path('api/join', views.JoinAPIViewSet.as_view())
+
 
 ]
 #
