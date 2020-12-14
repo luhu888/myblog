@@ -1,7 +1,7 @@
 import base64
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
-from rest_framework import exceptions, viewsets, status
+from rest_framework import exceptions, viewsets, status, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.hashers import make_password
@@ -12,7 +12,7 @@ from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 from django.contrib.auth import login, logout, authenticate
 import logging
 from django.views.decorators.csrf import csrf_exempt
-from new_user.serializers import RegisterSerializer
+from new_user.serializers import RegisterSerializer, JoinSerializer
 
 logger = logging.getLogger('django')
 week_change = {'1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六', '7': '日'}
@@ -194,10 +194,7 @@ def my_api(request):
         return HttpResponse("注册成功")
 
 
-class RegisterViewSet(viewsets.ModelViewSet):
-    """
-        此视图自动提供`list`和`detail`操作。
-    """
+class RegisterAPIView(generics.CreateAPIView):
     # 序列化类
     serializer_class = RegisterSerializer
     # 查询集和结果集
@@ -205,7 +202,7 @@ class RegisterViewSet(viewsets.ModelViewSet):
     # 用户验证
     permission_classes = [AllowAny, ]
 
-    def create(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         password = serializer.data['password']
@@ -215,39 +212,24 @@ class RegisterViewSet(viewsets.ModelViewSet):
         weChat = str(weChat2, 'utf-8')
         user = User.objects.create_user(username=username, password=password, weChat=weChat)
         user.save()
-        headers = self.get_success_headers(serializer.data)
+        # headers = self.get_success_headers(serializer.data)
         data = {'code': 200, 'msg': '注册成功', 'data': serializer.data}
-        return Response(data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(data, status=status.HTTP_201_CREATED)
 
 
-# class LoginViewSet(viewsets.ModelViewSet):
-#     serializer_class = LoginSerializer
-#     queryset = MyUser.objects.all()
-#     permission_classes = [AllowAny, ]
-#
-#     def create(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         password = serializer.data['password']
-#         username = serializer.data['username']
-#         # token = Token.objects.get(user=isinstance(username))
-#         headers = self.get_success_headers(serializer.data)
-#         data = {'code': 200,  'data': 'data'}
-#         return Response(data, status=status.HTTP_201_CREATED, headers=headers)
-#
-#
-# class LoginView(APIView):
-#     authentication_classes = []
-#
-#     def post(self, request, *args, **kwargs):
-#         username = request.data.get("username")
-#         passwork = request.data.get("password")
-#         user_obj = User.objects.filter(username=username, password=passwork).first()
-#         if not user_obj:
-#             return Response({"code": 1000, 'error': '用户名或密码错误'})
-#         payload = {
-#             "id": user_obj.pk,
-#             "name": user_obj.username,
-#         }
-#         token = get_token(payload, 5)
-#         return Response({"code": 1001, 'data': token})
+class JoinAPIViewSet(generics.CreateAPIView):
+    # 序列化类
+    serializer_class = JoinSerializer
+    # 查询集和结果集
+    queryset = BadmintonActivityDetails.objects.all()
+    # 用户验证
+    permission_classes = [AllowAny, ]
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        logger.info(serializer.data)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
