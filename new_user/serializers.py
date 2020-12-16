@@ -1,6 +1,4 @@
 from rest_framework import serializers
-from rest_framework.validators import UniqueTogetherValidator
-
 from new_user.models import MyUser, BadmintonActivityDetails
 
 
@@ -25,7 +23,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class JoinSerializer(serializers.ModelSerializer):
     """SlugRelatedField 可以使用目标上的字段来表示关系的目标"""
-
     class Meta:
         extra_kwargs = {
             'activity_number': {
@@ -39,5 +36,6 @@ class JoinSerializer(serializers.ModelSerializer):
         }
         model = BadmintonActivityDetails
         # 要显示出来的字段
+        fields = ('activity_number', 'join_weChat')
 
 
