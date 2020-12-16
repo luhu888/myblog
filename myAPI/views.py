@@ -3,9 +3,9 @@ import logging
 
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
 
 from myAPI.models import APIActivityRelated
+from myAPI.response import JsonResponse
 from myAPI.serializers import RegisterSerializer, APIActivityRelatedSerializer
 from new_user.models import MyUser
 
@@ -33,7 +33,7 @@ class RegisterAPIView(generics.CreateAPIView):
         user.save()
         # headers = self.get_success_headers(serializer.data)
         data = {'code': 200, 'msg': '注册成功', 'data': serializer.data}
-        return Response(data, status=status.HTTP_201_CREATED)
+        return JsonResponse(data, status=status.HTTP_201_CREATED)
 
 
 class JoinAPIViewSet(generics.CreateAPIView):
@@ -51,4 +51,4 @@ class JoinAPIViewSet(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return JsonResponse(data=serializer.data, msg="success", code=201, status=status.HTTP_201_CREATED, headers=headers)
