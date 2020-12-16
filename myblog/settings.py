@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k-)efxao!irze6^i2u@cryrysw&q4h2qn(zts6-r6d1*4@rh4@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']   # 加星表示任何域名都可以访问
 SIMPLEUI_HOME_INFO = False
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # 'rest_framework.authtoken',  # 后台显示token
     'rest_auth',
     'corsheaders',
+    'myAPI',
 ]
 
 MIDDLEWARE = [
@@ -168,7 +169,9 @@ REST_FRAMEWORK = {
        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
        'rest_framework.authentication.SessionAuthentication',
        # 'rest_framework.authentication.BasicAuthentication',  # token认证
-       ),}
+       ),
+    'EXCEPTION_HANDLER': 'myAPI.exceptions.custom_exception_handler',
+}
 
 JWT_AUTH = {
     # 自定义obtain_jwt_token返回的数据

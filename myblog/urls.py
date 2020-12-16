@@ -34,6 +34,8 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path(r'docs/', include_docs_urls(title='接口文档')),
     path(r'api-token-auth/', obtain_jwt_token),
+    path('myAPI/', include('myAPI.urls')),
+
     # path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
     # path('news/', views.news),  # news

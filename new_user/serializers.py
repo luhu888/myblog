@@ -26,8 +26,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 class JoinSerializer(serializers.ModelSerializer):
     """SlugRelatedField 可以使用目标上的字段来表示关系的目标"""
 
-    tracks = serializers.SlugRelatedField(many=True, read_only=True, slug_field='is_full')
-
     class Meta:
         extra_kwargs = {
             'activity_number': {
@@ -41,14 +39,5 @@ class JoinSerializer(serializers.ModelSerializer):
         }
         model = BadmintonActivityDetails
         # 要显示出来的字段
-        fields = ['activity_number', 'join_weChat', 'tracks']
 
-        validators = [
-            UniqueTogetherValidator(
-                queryset=BadmintonActivityDetails.objects.all(),
-                fields=['activity_number', 'join_weChat'],
-                message='该用户已报名，请勿重复报名',
-            ),
-
-        ]
 
