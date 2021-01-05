@@ -1,0 +1,6 @@
+{% extends "base1.html" %}
+{% block menu %}
+    <div>菜单2的内容</div>
+    {% load my_tags %}
+    {{ s1|filter_multi1:'23' }}
+    {% endblock %}

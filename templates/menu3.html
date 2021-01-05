@@ -1,0 +1,6 @@
+{% extends "base1.html" %}
+{% block menu %}
+    {% for i,j in context.items %}
+    {{ j|safe }}
+    {% endfor %}
+    {% endblock %}

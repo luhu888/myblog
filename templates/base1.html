@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}My amazing site{% endblock %}</title>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .content {
+        width: 85%;
+        float:right;
+    }
+    {#//清除浮动#}
+    .clearfix {
+        overflow: hidden;
+    }
+    .nav {
+        background-color: #1094fa;
+        height:40px;
+    }
+    .left-menu {
+        background-color: #6ce26c;
+        color: white;
+        width: 15%;
+        height: 900px;
+        float:left;
+    }
+    ul {
+        margin: 0;
+    }
+
+
+</style>
+</head>
+
+<body>
+<div class="nav">
+    <a href="">navbar1</a>
+    <a href="">navbar2</a>
+    <a href="">navbar3</a>
+    <input type="text"> <button>search</button>
+
+</div>
+<div class="clearfix">
+<div class="left-menu">
+    <ul>
+        <li><a href="/child/menu1/">menu1</a></li>
+        <li><a href="/child/menu2/">menu2</a></li>
+        <li><a href="/child/menu3/">menu3</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    {% block menu %}
+    {% endblock %}
+</div>
+</div>
+<div>botton</div>
+</body>
+</html>

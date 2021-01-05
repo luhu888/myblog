@@ -35,6 +35,7 @@ urlpatterns = [
     path(r'docs/', include_docs_urls(title='接口文档')),
     path(r'api-token-auth/', obtain_jwt_token),
     path('myAPI/', include('myAPI.urls')),
+    path('child/', include('templatetest.urls'))
 
     # path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     # path('articles/<int:year>/', views.year_archive, name='news-year-archive'),
