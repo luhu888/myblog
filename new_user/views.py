@@ -130,7 +130,9 @@ def activityView(request, number):
     is_operate = BadmintonActivity.objects.get(activity_number=int(number)).is_operate
     surplus = limit_count - join_count
     if surplus <= 0:
-        surplus = 0
+        surplus = '0'
+    else:
+        surplus=str(surplus)
     logger.info(activity_place)
     # for i in activityDetails:
     for j in join_dic.keys():
