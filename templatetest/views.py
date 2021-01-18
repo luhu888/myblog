@@ -9,7 +9,7 @@ def menu1(request):
 
 def menu2(request):
     s = 'haha'
-    return render(request, 'menu2.html', {'s1': s})
+    return render(request, 'menu2.html', {'s': s})
 
 
 def menu3(request):

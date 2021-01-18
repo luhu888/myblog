@@ -11,7 +11,7 @@ def filter_multi(v1):
     :param v1:
     :return:
     """
-    return v1 + '合并'
+    return v1+'合并'
 
 
 @register.filter

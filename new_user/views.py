@@ -1,4 +1,6 @@
 import base64
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from rest_framework import exceptions, viewsets, status, generics
@@ -111,7 +113,7 @@ def activityView(request, number):
     username = request.user.username
     activityDetails = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id))
     join_dic = {}
-    new_join_dic = {}
+    new_join_dic = []
     is_join = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id), join_weChat_id=request.user.id, is_substitution=False)
     is_substitution = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id), join_weChat_id=request.user.id, is_substitution=True)
     is_full = BadmintonActivity.objects.filter(activity_number=int(number)).values_list('is_full')[0][0]
@@ -128,9 +130,9 @@ def activityView(request, number):
     is_operate = BadmintonActivity.objects.get(activity_number=int(number)).is_operate
     surplus = str(limit_count - join_count)
     logger.info(activity_place)
-    for i in activityDetails:
-        for j in join_dic.keys():
-            new_join_dic[base64.b64decode(MyUser.objects.get(id=j).weChat).decode('utf8')] = join_dic[j]
+    # for i in activityDetails:
+    for j in join_dic.keys():
+        new_join_dic.append([base64.b64decode(MyUser.objects.get(id=j).weChat).decode('utf8'), join_dic[j]])
     if request.method == 'POST':
         if bool(is_join) and action == 'join':
             tips = '您已成功报名，请勿重复报名'
@@ -167,6 +169,18 @@ def activityView(request, number):
         change_limit = BadmintonActivity.objects.get(activity_number=int(number))
         change_limit.is_full = 1
         change_limit.save()
+    # page1 = paginator.page1(1)  # 第1页的page对象
+
+    paginator = Paginator(new_join_dic, 5)  # 按照每页显示10条来计算
+    page = request.GET.get('page', 1)  # 将来访问的url是这样的 http://127.0.0.1:8000/路径/?page=1
+    currentPage = int(page)
+    logger.info(new_join_dic)
+    try:
+        new_join_dic = paginator.page(page)
+    except PageNotAnInteger:
+        new_join_dic = paginator.page(1)
+    except EmptyPage:
+        new_join_dic = paginator.page(paginator.num_pages)
     return render(request, 'activity.html', locals())
 
 
