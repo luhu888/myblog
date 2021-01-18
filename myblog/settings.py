@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'corsheaders',
     'myAPI',
+    'templatetest',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 没了这句，
-        # 会显示django.template.exceptions.TemplateDoesNotExist: index1.html
+        # 会显示django.template.exceptions.TemplateDoesNotExist: menu2.html
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

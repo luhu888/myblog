@@ -341,3 +341,34 @@ urlpatterns = [
 ]
 ```
 
+#### 七、视图函数request对象的方法和属性
+[请求相关的常用值](https://docs.djangoproject.com/en/1.11/ref/request-response/)
+path_info     返回用户访问url，不包括域名
+method        请求中使用的HTTP方法的字符串表示，全大写表示。
+GET              包含所有HTTP  GET参数的类字典对象
+POST           包含所有HTTP POST参数的类字典对象
+body            请求体，byte类型 request.POST的数据就是从body里面提取到的
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load my_tags %}　
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+</head>
+<body>
+{% include 'nav.html' %}
+<h1>xxxxxxxxxx</h1>
+<div>{{ num|filter_multi:2 }}</div>
+</body>
+</html>
