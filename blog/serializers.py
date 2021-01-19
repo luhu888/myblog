@@ -40,3 +40,12 @@ class CategorySerializer(serializers.ModelSerializer):
         }
         model = Category
         fields = ('name', 'index')
+
+
+    # def to_representation(self, instance):    # 自定义返回每条数据的格式
+    #     return {
+    #         'code': 1, 'msg': '成功', 'errors': {}, 'data':
+    #             { 'name': instance.name,
+    #             'index': instance.index,
+    #               }
+        # }

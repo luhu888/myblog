@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser as User
 from rest_framework import routers, serializers, viewsets
 import logging
@@ -10,7 +10,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from blog.models import Category
 from blog.serializers import CategorySerializer
-
+from rest_framework.response import Response
 
 logger = logging.getLogger('django')
 
@@ -79,4 +79,14 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     # 用户验证
     # authentication_classes = (JSONWebTokenAuthentication, )  # SessionAuthentication
-    # permission_classes = []   # 指定访问该接口需要什么权限 AllowAny,
+    # permission_classes = [IsAuthenticated,]   # 指定访问该接口需要什么权限 AllowAny,IsAuthenticated
+    def list(self, request, *args, **kwargs):
+        """
+        自定义接口返回格式
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        response = super().list(request, *args, **kwargs)
+        return Response({'code': 200, 'msg': '成功', 'data':response.data})

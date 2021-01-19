@@ -15,6 +15,15 @@ import time
 import logging
 import django.utils.log
 import logging.handlers
+import json
+
+
+def read_config():
+    """"读取配置"""
+    with open("./setting.json", encoding='utf-8') as json_file:
+        return dict(json.load(json_file))
+        # print(config)
+ret = read_config()
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k-)efxao!irze6^i2u@cryrysw&q4h2qn(zts6-r6d1*4@rh4@'
+SECRET_KEY = ret["SECRET_KEY"],
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,13 +103,11 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myblog',
-        'USER': 'root',
-        # 'PASSWORD': 'root',
-        'PASSWORD': 'luhu199515lbh',
-
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': ret["NAME"],
+        'USER': ret["USER"],
+        'PASSWORD': ret["PASSWORD"],
+        'HOST': ret["HOST"],
+        'PORT': ret["PORT"],
         }
 }
 
@@ -148,14 +155,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 AUTH_USER_MODEL = 'new_user.MyUser'   # 指定新的用户model
-REST_USE_JWT = True
+# REST_USE_JWT = True
 cur_path = os.path.dirname(os.path.realpath(__file__))  # log_path是存放日志的路径
 log_path = os.path.join(os.path.dirname(cur_path), 'logs')
 if not os.path.exists(log_path):
     os.mkdir(log_path)  # 如果不存在这个logs文件夹，就自动创建一个
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAdminUser',
+        # 'rest_framework.permissions.IsAdminUser',
         # 'rest_framework.permissions.DjangoObjectPermissions',
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
         # 'rest_framework.permissions.IsAuthenticated',
@@ -165,14 +173,20 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',   # 不加这个迁移数据库会有警告
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 
-    'PAGE_SIZE': 10,
+    'PAGE_SIZE': 5,
     "DEFAULT_AUTHENTICATION_CLASSES": (
-       'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-       'rest_framework.authentication.SessionAuthentication',
+       # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+       # 'rest_framework.authentication.SessionAuthentication',
        # 'rest_framework.authentication.BasicAuthentication',  # token认证
        ),
     'EXCEPTION_HANDLER': 'myAPI.exceptions.custom_exception_handler',
 }
+
+#配置自定义的认证
+# AUTHENTICATION_BACKENDS = [
+#     # 默认值：['django.contrib.auth.backends.ModelBackend']
+#     ['new_user.views.UserPhoneEmailAuthBackend',]
+# ]
 
 JWT_AUTH = {
     # 自定义obtain_jwt_token返回的数据
@@ -184,7 +198,10 @@ JWT_AUTH = {
     'JWT_VERIFY': True,    # 如果密码错误，它将引发一个jwt.DecodeError
     'JWT_VERIFY_EXPIRATION': True,    # 将过期设置为True，这意味着令牌将在一段时间后过期。 默认时间是五分钟
     'JWT_AUTH_HEADER_PREFIX': 'JWT',   # 需要与令牌一起发送的Authorization标头值前缀。默认值为JWT
-
+    # 配置自定义的jwt返回内容路径(登录成功的返回)
+    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'new_user.views.jwt_response_payload_handler',
+    # 登陆失败时自定义的返回结构
+    'JWT_RESPONSE_PAYLOAD_ERROR_HANDLER': 'new_user.views.jwt_response_payload_error_handler',
 
             }
 
