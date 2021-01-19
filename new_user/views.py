@@ -22,6 +22,8 @@ from rest_framework import status
 from rest_framework_jwt.settings import api_settings
 from rest_framework_jwt.views import JSONWebTokenAPIView, ObtainJSONWebToken, RefreshJSONWebToken, VerifyJSONWebToken
 from datetime import datetime
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger('django')
 week_change = {'1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六', '7': '日'}
@@ -114,6 +116,16 @@ def logoutView(request):
     return redirect('/')
 
 
+def check_login(func):  # 自定义登录验证装饰器
+    def warpper(request, *args, **kwargs):
+        is_login = request.session.get('is_login', False)
+        if is_login:
+            func(request, *args, **kwargs)
+        else:
+            return redirect("/")
+    return warpper
+
+@login_required
 def activityView(request, number):
     activity_id = BadmintonActivity.objects.get(activity_number=number).id
     logger.info(activity_id)
