@@ -128,7 +128,11 @@ def activityView(request, number):
     limit_count = BadmintonActivity.objects.get(activity_number=int(number)).limit_count
     join_count = BadmintonActivityDetails.objects.filter(activity_number_id=int(activity_id)).count()  # is_substitution=0
     is_operate = BadmintonActivity.objects.get(activity_number=int(number)).is_operate
-    surplus = str(limit_count - join_count)
+    surplus = limit_count - join_count
+    if surplus <= 0:
+        surplus = '0'
+    else:
+        surplus=str(surplus)
     logger.info(activity_place)
     # for i in activityDetails:
     for j in join_dic.keys():
@@ -171,7 +175,7 @@ def activityView(request, number):
         change_limit.save()
     # page1 = paginator.page1(1)  # 第1页的page对象
 
-    paginator = Paginator(new_join_dic, 5)  # 按照每页显示10条来计算
+    paginator = Paginator(new_join_dic, 10)  # 按照每页显示10条来计算
     page = request.GET.get('page', 1)  # 将来访问的url是这样的 http://127.0.0.1:8000/路径/?page=1
     currentPage = int(page)
     logger.info(new_join_dic)

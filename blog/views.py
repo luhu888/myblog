@@ -78,5 +78,5 @@ class CategoryViewSet(viewsets.ModelViewSet):
     # 查询集和结果集
     queryset = Category.objects.all()
     # 用户验证
-    authentication_classes = (JSONWebTokenAuthentication, )  # SessionAuthentication
+    # authentication_classes = (JSONWebTokenAuthentication, )  # SessionAuthentication
     # permission_classes = []   # 指定访问该接口需要什么权限 AllowAny,
