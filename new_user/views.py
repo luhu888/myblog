@@ -319,8 +319,6 @@ class MyJSONWebTokenAPIView(JSONWebTokenAPIView):
         return Response(error_data, status=status.HTTP_200_OK)
 
 
-
-
 class MyObtainJSONWebToken(ObtainJSONWebToken, MyJSONWebTokenAPIView):
     pass
 
