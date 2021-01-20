@@ -42,6 +42,13 @@ urlpatterns = [
     # path('news/', views.news),  # news
     # path('bbs/', views.bbs),  # bbs
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+
 # handler404 = views.page_not_found
 # handler500 = views.page_error
 admin.site.site_header = "小羽毛报名系统"

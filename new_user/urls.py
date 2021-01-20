@@ -1,7 +1,7 @@
 from django.urls import path, include
 # from django.conf.urls import handler404, handler500
 from rest_framework import routers
-# from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token
 
 from new_user import views
 from new_user.views import JoinAPIViewSet
@@ -18,8 +18,8 @@ urlpatterns = [
     path('logout.html', views.logoutView, name='logout'),
     path('activity/<int:number>.html', views.activityView, name='activity'),
     path('register_api', views.my_api, name='register_api'),
+    # path('api/login', obtain_jwt_token),
     path('api/login', views.obtain_jwt_token),
-    # path('api/login', views.my_obtain_jwt_token),
     path('api/', include(router.urls)),
     path('api/register', views.RegisterAPIView.as_view()),
     path('api/join', views.JoinAPIViewSet.as_view())

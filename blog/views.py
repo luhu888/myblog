@@ -11,6 +11,7 @@ from rest_framework.parsers import JSONParser
 from blog.models import Category
 from blog.serializers import CategorySerializer
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 
 logger = logging.getLogger('django')
 
@@ -72,11 +73,22 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
+class MyPagination(PageNumberPagination):
+    # 每页条数
+    page_size = 5
+    # 页数拼接参数名
+    page_query_param = 'page'
+    # page_size_query_param = 'size'
+    # max_page_size = 100
+
+
 class CategoryViewSet(viewsets.ModelViewSet):
     # 序列化类
     serializer_class = CategorySerializer
     # 查询集和结果集
     queryset = Category.objects.all()
+    # 配置我们自己写的分页类
+    pagination_class = MyPagination
     # 用户验证
     # authentication_classes = (JSONWebTokenAuthentication, )  # SessionAuthentication
     # permission_classes = [IsAuthenticated,]   # 指定访问该接口需要什么权限 AllowAny,IsAuthenticated

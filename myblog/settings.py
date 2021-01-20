@@ -58,8 +58,12 @@ INSTALLED_APPS = [
     'corsheaders',
     'myAPI',
     'templatetest',
+    # 'debug_toolbar',
 ]
-
+# INTERNAL_IPS = [
+#     # ...
+#     '127.0.0.1',
+# ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,10 +73,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'myblog.urls'
-
+# DEBUG_TOOLBAR_CONFIG = {
+#     "JQUERY_URL": '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js',
+# }
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -189,8 +196,6 @@ REST_FRAMEWORK = {
 # ]
 
 JWT_AUTH = {
-    # 自定义obtain_jwt_token返回的数据
-    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.login_utils.jwt_response_payload_handler',
     # jwt_token的有效期
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),  # days=1 代表 token时效为1天
     # jwt是否自动刷新
