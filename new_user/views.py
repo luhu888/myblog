@@ -278,7 +278,7 @@ def jwt_response_payload_handler(token, user=None, request=None):
     """为返回的结果添加用户相关信息"""
     return {
         "msg": "success",
-        "status": 200,
+        "code": 200,
         "data": {
             "token": token,
             "user_id": user.id,
@@ -290,8 +290,8 @@ def jwt_response_payload_handler(token, user=None, request=None):
 def jwt_response_payload_error_handler(serializer, request=None):
     return {
         "msg": "用户名或者密码错误",
-        "status": 400,
-        "errors": serializer.errors['non_field_errors'][0]
+        "code": 400,
+        "errors": serializer.errors
     }
 
 
