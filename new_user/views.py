@@ -244,17 +244,20 @@ class RegisterAPIView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        password = serializer.data['password']
-        username = serializer.data['username']
-        weChat1 = serializer.data['weChat']
-        weChat2 = base64.b64encode(weChat1.encode('utf8'))
-        weChat = str(weChat2, 'utf-8')
-        user = User.objects.create_user(username=username, password=password, weChat=weChat)
-        user.save()
-        # headers = self.get_success_headers(serializer.data)
-        data = {'code': 200, 'msg': '注册成功', 'data': serializer.data}
-        return Response(data, status=status.HTTP_201_CREATED)
+        if serializer.is_valid():
+            password = serializer.data['password']
+            username = serializer.data['username']
+            weChat1 = serializer.data['weChat']
+            weChat2 = base64.b64encode(weChat1.encode('utf8'))
+            weChat = str(weChat2, 'utf-8')
+            user = User.objects.create_user(username=username, password=password, weChat=weChat)
+            user.save()
+            # headers = self.get_success_headers(serializer.data)
+            data = {'code': 200, 'msg': '注册成功', 'data': serializer.data}
+            return Response(data, status=status.HTTP_201_CREATED)
+        else:
+            data = {'code': 400, 'msg': '注册失败', 'data': serializer.errors}
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class JoinAPIViewSet(generics.CreateAPIView):

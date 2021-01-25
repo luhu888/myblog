@@ -23,6 +23,8 @@ def read_config():
     with open("./setting.json", encoding='utf-8') as json_file:
         return dict(json.load(json_file))
         # print(config)
+
+    
 ret = read_config()
 
 

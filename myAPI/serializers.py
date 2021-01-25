@@ -26,12 +26,21 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class APIActivityRelatedSerializer(serializers.ModelSerializer):
     class Meta:
+        extra_kwargs = {
+            'activity_number': {
+                'help_text': '活动id'
+            },
+            'joiner': {
+                'help_text': '报名人id'
+
+            },
+        }
         model = APIActivityRelated
-        fields = ['activity_number', 'joiner']
+        fields = ('activity_number', 'joiner')
         validators = [
             UniqueTogetherValidator(
                 queryset=APIActivityRelated.objects.all(),
-                fields=['activity_number', 'joiner'],
+                fields=('activity_number', 'joiner'),
                 message='该用户已报名，请勿重复报名',),
 
         ]
