@@ -7,6 +7,7 @@ from myAPI.models import APIActivity, APIActivityRelated
 from new_user.models import MyUser
 logger = logging.getLogger('django')
 
+
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         extra_kwargs = {
@@ -47,7 +48,6 @@ class APIActivityRelatedSerializer(serializers.ModelSerializer):
 
         ]
 
-
     def validate(self, data):
         is_operate = APIActivity.objects.get(activity_name=data['activity_number']).is_operate
         is_full = APIActivity.objects.get(activity_name=data['activity_number']).is_full
@@ -63,5 +63,20 @@ class APIActivityRelatedSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("对不起该活动已结束")
         else:
             return data
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        extra_kwargs = {
+            'username': {
+                'help_text': '登录名'
+            },
+            'password': {
+                'help_text': '设置密码'
+            },
+        }
+        model = MyUser
+        # 要显示出来的字段
+        fields = ('username', 'password')
 
 

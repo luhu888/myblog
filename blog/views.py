@@ -92,6 +92,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     # 用户验证
     # authentication_classes = (JSONWebTokenAuthentication, )  # SessionAuthentication
     # permission_classes = [IsAuthenticated,]   # 指定访问该接口需要什么权限 AllowAny,IsAuthenticated
+
     def list(self, request, *args, **kwargs):
         """
         自定义接口返回格式
@@ -101,4 +102,11 @@ class CategoryViewSet(viewsets.ModelViewSet):
         :return:
         """
         response = super().list(request, *args, **kwargs)
-        return Response({'code': 200, 'msg': '成功', 'data':response.data})
+        return Response(
+            {
+                'msg': '成功',
+                'code': 200,
+                'data': response.data
+            })
+
+

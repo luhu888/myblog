@@ -3,10 +3,10 @@ import base64
 from rest_framework import exceptions, viewsets, status, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from myAPI.serializers import APIActivityRelatedSerializer
+from myAPI.serializers import APIActivityRelatedSerializer, LoginSerializer
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 import logging
-from new_user.serializers import RegisterSerializer, JoinSerializer
+from new_user.serializers import RegisterSerializer
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
 from rest_framework_jwt.views import JSONWebTokenAPIView, ObtainJSONWebToken, RefreshJSONWebToken, VerifyJSONWebToken
@@ -88,6 +88,12 @@ def jwt_response_payload_handler(token, user=None, request=None):
 
 
 def jwt_response_payload_error_handler(serializer, request=None):
+    """
+    登录报错处理
+    :param serializer:
+    :param request:
+    :return:
+    """
     return {
         "msg": "用户名或者密码错误",
         "code": 400,
@@ -98,8 +104,20 @@ def jwt_response_payload_error_handler(serializer, request=None):
 class MyJSONWebTokenAPIView(JSONWebTokenAPIView):
     """
     登录错误信息返回重写JSONWebTokenAPIView
+
     """
+    serializer_class = LoginSerializer
+    queryset = MyUser.objects.all()
+    permission_classes = [AllowAny, ]
+
     def post(self, request, *args, **kwargs):
+        """
+        登录接口
+        :param request:请求
+        :param args:形参
+        :param kwargs:关键字参数
+        :return:登录成功就返回token，失败返回原因
+        """
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             logger.info(serializer.object.get('user'))
@@ -116,7 +134,7 @@ class MyJSONWebTokenAPIView(JSONWebTokenAPIView):
                                     httponly=True)
             return response
         error_data = jwt_response_payload_error_handler(serializer, request)
-        return Response(error_data, status=status.HTTP_200_OK)
+        return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class MyObtainJSONWebToken(ObtainJSONWebToken, MyJSONWebTokenAPIView):
