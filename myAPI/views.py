@@ -1,27 +1,17 @@
 import base64
 
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
-from django.shortcuts import render, redirect
 from rest_framework import exceptions, viewsets, status, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from django.contrib.auth.hashers import make_password
-from rest_framework.views import APIView
-
+from myAPI.serializers import APIActivityRelatedSerializer
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
-from django.contrib.auth import login, logout, authenticate
 import logging
-from django.views.decorators.csrf import csrf_exempt
 from new_user.serializers import RegisterSerializer, JoinSerializer
-import re
-from django.contrib.auth.backends import ModelBackend
 from rest_framework import status
 from rest_framework_jwt.settings import api_settings
 from rest_framework_jwt.views import JSONWebTokenAPIView, ObtainJSONWebToken, RefreshJSONWebToken, VerifyJSONWebToken
 from datetime import datetime
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+
 
 logger = logging.getLogger('django')
 week_change = {'1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六', '7': '日'}
@@ -43,7 +33,7 @@ class RegisterAPIView(generics.CreateAPIView):
             weChat1 = serializer.data['weChat']
             weChat2 = base64.b64encode(weChat1.encode('utf8'))
             weChat = str(weChat2, 'utf-8')
-            user = User.objects.create_user(username=username, password=password, weChat=weChat)
+            user = MyUser.objects.create_user(username=username, password=password, weChat=weChat)
             user.save()
             # headers = self.get_success_headers(serializer.data)
             data = {'code': 200, 'msg': '注册成功', 'data': serializer.data}
@@ -55,7 +45,7 @@ class RegisterAPIView(generics.CreateAPIView):
 
 class JoinAPIViewSet(generics.CreateAPIView):
     # 序列化类
-    serializer_class = JoinSerializer
+    serializer_class = APIActivityRelatedSerializer
     # 查询集和结果集
     queryset = BadmintonActivityDetails.objects.all()
     # 用户验证
@@ -63,11 +53,25 @@ class JoinAPIViewSet(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        logger.info(serializer.data)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        if serializer.is_valid():
+            self.perform_create(serializer)
+            logger.info(serializer.data)
+            headers = self.get_success_headers(serializer.data)
+            data = {
+                "msg": "success",
+                "code": 200,
+                "data": serializer.data
+
+            }
+            return Response(data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            data = {
+                "msg": "fail",
+                "code": 400,
+                "data": serializer.errors
+
+            }
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
 def jwt_response_payload_handler(token, user=None, request=None):
