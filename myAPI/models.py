@@ -25,9 +25,11 @@ class APIActivity(models.Model):
 
 
 class APIActivityRelated(models.Model):
-    joiner = models.ForeignKey(MyUser, on_delete=models.CASCADE, verbose_name='报名人员')  # on_delete级联删除
+    joiner = models.ForeignKey(MyUser, on_delete=models.CASCADE, verbose_name='报名人员',
+                               related_name='joiners')  # on_delete级联删除
     is_substitution = models.BooleanField(verbose_name='是否替补', default=False)
-    activity_number = models.ForeignKey(APIActivity, on_delete=models.CASCADE, verbose_name='活动编号', default=1)
+    activity_number = models.ForeignKey(APIActivity, on_delete=models.CASCADE, verbose_name='活动编号', default=1,
+                                        related_name='activities')
     operate_time = models.DateTimeField(verbose_name='操作时间', default=timezone.now)
 
     class Meta:

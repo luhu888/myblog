@@ -12,6 +12,8 @@ urlpatterns = [
     path('api/login', views.obtain_jwt_token),
     path('api/', include(router.urls)),
     path('api/register', views.RegisterAPIView.as_view()),
+    path('api/activityDetail/', views.GetJoinListView.as_view()),
+    path('api/activity/', views.ActivityListView.as_view()),
 ]
 #
 # handler404 = views.page_not_found
