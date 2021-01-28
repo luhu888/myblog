@@ -181,7 +181,7 @@ class GetJoinList(generics.ListAPIView):
 
 class GetJoinListView(generics.ListAPIView):
     """
-    报名表维度的活动详情
+    报名表维度的活动详情,目前没用
     """
     # 序列化类
     serializer_class = GetJoinListSerializer
