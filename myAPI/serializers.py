@@ -82,6 +82,38 @@ class APIActivityRelatedSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("对不起,您报名的活动不存在")
 
 
+class APISubstitutionSerializer(serializers.ModelSerializer):
+    """
+    活动替补序列化
+    """
+    class Meta:
+        extra_kwargs = {
+            'activity_number': {
+                'help_text': '活动id',
+                'required': True
+            },
+            'joiner': {
+                'help_text': '替补人id',
+                'required': True
+
+            },
+            'is_substitution': {
+                'help_text': '是否替补',
+                'required': True
+
+            },
+        }
+        model = APIActivityRelated
+        fields = ('activity_number', 'joiner', 'is_substitution')
+        validators = [
+            UniqueTogetherValidator(
+                queryset=APIActivityRelated.objects.all(),
+                fields=('activity_number', 'joiner'),
+                message='该用户已报名，请勿重复报名',),
+
+        ]
+
+
 class APIActivitySerializer(serializers.ModelSerializer):
     """
     支持活动列表及详情序列化的序列化

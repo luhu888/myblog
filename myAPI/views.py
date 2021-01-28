@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from myAPI.models import APIActivityRelated, APIActivity
 from myAPI.serializers import APIActivityRelatedSerializer, Register1Serializer, GetJoinListSerializer, \
-    GetActivitySerializer, LoginSerializer
+    GetActivitySerializer, LoginSerializer, APISubstitutionSerializer
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 import logging
 from rest_framework import status
@@ -57,7 +57,8 @@ class JoinAPIViewSet(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            self.perform_create(serializer)
+            # serializer.data['is_substitution'] = True   # 报名替补
+            self.create(serializer)
             count = APIActivityRelated.objects.filter(activity_number=serializer.data['activity_number']).count()
             limit = APIActivity.objects.get(activity_number=serializer.data['activity_number']).limit_count
             activity = APIActivity.objects.get(activity_number=serializer.data['activity_number'])
@@ -67,6 +68,43 @@ class JoinAPIViewSet(generics.CreateAPIView):
                 activity.is_full = False
             activity.save()
             logger.info(limit)
+            headers = self.get_success_headers(serializer.data)
+            data = {
+                "msg": "success",
+                "code": 200,
+                "data": serializer.data
+
+            }
+            return Response(data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+            logger.info(serializer.data)
+            data = {
+                "msg": "fail",
+                "code": 400,
+                "data": serializer.errors
+            }
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SubstitutionAPIViewSet(generics.CreateAPIView):
+    """
+    活动替补视图函数
+    """
+    # 序列化类
+    serializer_class = APISubstitutionSerializer
+    # 查询集和结果集
+    queryset = BadmintonActivityDetails.objects.all()
+    # 用户验证
+    permission_classes = [AllowAny, ]
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            logger.info(type(serializer.data))
+
+            # serializer.data['is_substitution'] = True  # 报名替补
+            logger.info(serializer.data)
+            self.create(serializer)
             headers = self.get_success_headers(serializer.data)
             data = {
                 "msg": "success",
