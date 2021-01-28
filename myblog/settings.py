@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'myAPI',
     'templatetest',
     # 'debug_toolbar',
+    'django_filters',
 ]
 # INTERNAL_IPS = [
 #     # ...
@@ -189,9 +190,11 @@ REST_FRAMEWORK = {
        # 'rest_framework.authentication.BasicAuthentication',  # token认证
        ),
     'EXCEPTION_HANDLER': 'myAPI.exceptions.custom_exception_handler',
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',) # 全局默认配置过滤
+
 }
 
-#配置自定义的认证
+# 配置自定义的认证
 # AUTHENTICATION_BACKENDS = [
 #     # 默认值：['django.contrib.auth.backends.ModelBackend']
 #     ['new_user.views.UserPhoneEmailAuthBackend',]

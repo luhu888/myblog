@@ -3,7 +3,8 @@ from rest_framework import exceptions, viewsets, status, generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from myAPI.models import APIActivityRelated, APIActivity
-from myAPI.serializers import APIActivityRelatedSerializer, Register1Serializer, GetJoinListSerializer, GetActivitySerializer
+from myAPI.serializers import APIActivityRelatedSerializer, Register1Serializer, GetJoinListSerializer, \
+    GetActivitySerializer, LoginSerializer
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 import logging
 from rest_framework import status
@@ -141,6 +142,7 @@ class MyJSONWebTokenAPIView(JSONWebTokenAPIView):
 
 class MyObtainJSONWebToken(ObtainJSONWebToken, MyJSONWebTokenAPIView):
     pass
+
 
 class MyRefreshJSONWebToken(RefreshJSONWebToken, MyJSONWebTokenAPIView):
     pass
