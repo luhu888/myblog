@@ -7,10 +7,12 @@ from new_user.models import MyUser
 
 logger = logging.getLogger('django')
 
+
 class Register1Serializer(serializers.ModelSerializer):
     """
     注册序列化
     """
+
     class Meta:
         model = MyUser
         # 要显示出来的字段
@@ -57,7 +59,6 @@ class APIActivityRelatedSerializer(serializers.ModelSerializer):
                 message='该用户已报名，请勿重复报名',),
 
         ]
-
 
     def validate(self, data):
         is_operate = APIActivity.objects.get(activity_name=data['activity_number']).is_operate
@@ -112,7 +113,6 @@ class GetJoinListSerializer(APIActivitySerializer):
         model = APIActivityRelated
         fields = ('join_name', 'activities')
 
-
     def to_representation(self, instance):
         """
         对返回的微信昵称解码处理后返回
@@ -137,6 +137,7 @@ class GetActivitySerializer(serializers.ModelSerializer):
     活动列表及详情序列化
     """
     activities = APIActivityRelatedSerializer(many=True)
+
     class Meta:
         model = APIActivity
         fields = ('activity_name', 'is_alive', 'activity_place', 'place_number',
@@ -156,8 +157,18 @@ class GetActivitySerializer(serializers.ModelSerializer):
         return data
 
 
-
-
-
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        extra_kwargs = {
+            'username': {
+                'help_text': '登录名'
+            },
+            'password': {
+                'help_text': '设置密码'
+            },
+        }
+        model = MyUser
+        # 要显示出来的字段
+        fields = ('username', 'password')
 
 

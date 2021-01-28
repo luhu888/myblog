@@ -125,6 +125,7 @@ def check_login(func):  # 自定义登录验证装饰器
             return redirect("/")
     return warpper
 
+
 @login_required
 def activityView(request, number):
     activity_id = BadmintonActivity.objects.get(activity_number=number).id

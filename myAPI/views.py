@@ -90,6 +90,12 @@ def jwt_response_payload_handler(token, user=None, request=None):
 
 
 def jwt_response_payload_error_handler(serializer, request=None):
+    """
+    登录报错处理
+    :param serializer:
+    :param request:
+    :return:
+    """
     return {
         "msg": "用户名或者密码错误",
         "code": 400,
@@ -100,8 +106,20 @@ def jwt_response_payload_error_handler(serializer, request=None):
 class MyJSONWebTokenAPIView(JSONWebTokenAPIView):
     """
     登录错误信息返回重写JSONWebTokenAPIView
+
     """
+    serializer_class = LoginSerializer
+    queryset = MyUser.objects.all()
+    permission_classes = [AllowAny, ]
+
     def post(self, request, *args, **kwargs):
+        """
+        登录接口
+        :param request:请求
+        :param args:形参
+        :param kwargs:关键字参数
+        :return:登录成功就返回token，失败返回原因
+        """
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             logger.info(serializer.object.get('user'))
@@ -118,7 +136,7 @@ class MyJSONWebTokenAPIView(JSONWebTokenAPIView):
                                     httponly=True)
             return response
         error_data = jwt_response_payload_error_handler(serializer, request)
-        return Response(error_data, status=status.HTTP_200_OK)
+        return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class MyObtainJSONWebToken(ObtainJSONWebToken, MyJSONWebTokenAPIView):
@@ -178,7 +196,6 @@ class GetJoinList(generics.ListAPIView):
 #     # max_page_size = 100
 
 
-
 class GetJoinListView(generics.ListAPIView):
     """
     报名表维度的活动详情,目前没用
@@ -186,6 +203,7 @@ class GetJoinListView(generics.ListAPIView):
     # 序列化类
     serializer_class = GetJoinListSerializer
     # 查询集和结果集
+
     def get_queryset(self):
         """
         Optionally restricts the returned purchases to a given user,
@@ -203,6 +221,7 @@ class ActivityListView(generics.ListAPIView):
     活动列表和详情视图,详情接口请在链接后加/?activity_name=name
     """
     serializer_class = GetActivitySerializer
+    
     def get_queryset(self):
         """
         Optionally restricts the returned purchases to a given user,
