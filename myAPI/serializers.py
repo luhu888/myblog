@@ -74,7 +74,7 @@ class APIActivityRelatedSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('该活动已订满，请报名替补')
             elif is_cancel:
                 raise serializers.ValidationError("对不起，该活动已取消")
-            elif is_alive is False:
+            elif is_alive is True:
                 raise serializers.ValidationError("对不起该活动已结束")
             else:
                 return data
@@ -88,7 +88,7 @@ class APIActivitySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = APIActivity
-        fields = ('activity_number', 'is_alive', 'activity_place','activity_name')
+        fields = ('activity_number', 'is_alive', 'activity_place', 'activity_name')
 
 
 class GetJoinListSerializer(APIActivitySerializer):
@@ -140,8 +140,8 @@ class GetActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = APIActivity
-        fields = ('activity_name', 'is_alive', 'activity_place', 'place_number',
-                  'is_full', 'is_operate', 'limit_count','activity_start_time', 'activity_end_time', 'activities')
+        fields = ('activity_name', 'activity_number', 'is_alive', 'activity_place', 'place_number',
+                  'is_full', 'is_operate', 'limit_count', 'activity_start_time', 'activity_end_time', 'activities')
 
     def to_representation(self, instance):
         """
@@ -150,6 +150,8 @@ class GetActivitySerializer(serializers.ModelSerializer):
         :return:
         """
         data = super().to_representation(instance)
+        count = len(data['activities'])
+        data['count'] = count
         for joiner in data['activities']:
             logger.info(MyUser.objects.get(id=joiner['joiner']))
             weChat = str(MyUser.objects.get(id=joiner['joiner']).weChat)

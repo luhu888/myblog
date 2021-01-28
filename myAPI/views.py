@@ -58,7 +58,15 @@ class JoinAPIViewSet(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             self.perform_create(serializer)
-            logger.info(serializer.data)
+            count = APIActivityRelated.objects.filter(activity_number=serializer.data['activity_number']).count()
+            limit = APIActivity.objects.get(activity_number=serializer.data['activity_number']).limit_count
+            activity = APIActivity.objects.get(activity_number=serializer.data['activity_number'])
+            if count >= limit:
+                activity.is_full = True
+            else:
+                activity.is_full = False
+            activity.save()
+            logger.info(limit)
             headers = self.get_success_headers(serializer.data)
             data = {
                 "msg": "success",
@@ -68,11 +76,11 @@ class JoinAPIViewSet(generics.CreateAPIView):
             }
             return Response(data, status=status.HTTP_201_CREATED, headers=headers)
         else:
+            logger.info(serializer.data)
             data = {
                 "msg": "fail",
                 "code": 400,
                 "data": serializer.errors
-
             }
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
