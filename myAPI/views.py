@@ -200,7 +200,7 @@ class GetJoinListView(generics.ListAPIView):
 
 class ActivityListView(generics.ListAPIView):
     """
-    活动列表和详情视图
+    活动列表和详情视图,详情接口请在链接后加/?activity_name=name
     """
     serializer_class = GetActivitySerializer
     def get_queryset(self):
@@ -209,10 +209,10 @@ class ActivityListView(generics.ListAPIView):
         by filtering against a `username` query parameter in the URL.
         """
         queryset = APIActivity.objects.all()
-        activity_number = self.request.query_params.get('activity_number', None)
-        if activity_number is not None:
-            queryset = queryset.filter(activity_number=activity_number, is_alive=False)
-        return queryset.filter(is_alive=False)
+        activity_name = self.request.query_params.get('activity_name', None)
+        if activity_name is not None:
+            queryset = queryset.filter(activity_name=activity_name, is_alive=True)
+        return queryset.filter(is_alive=True)
 
     def get(self, request, *args, **kwargs):
         ret = super().get(self,request,*args,**kwargs)

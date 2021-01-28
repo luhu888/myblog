@@ -182,7 +182,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',   # 不加这个迁移数据库会有警告
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 
-    'PAGE_SIZE': 5,
+    # 'PAGE_SIZE': 5,   # 分页
     "DEFAULT_AUTHENTICATION_CLASSES": (
        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
        # 'rest_framework.authentication.SessionAuthentication',
