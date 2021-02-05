@@ -46,6 +46,8 @@ def loginView(request):    # 设置标题和另外两个URL链接
                     logger.info('账号是有效的')
                     logger.info(user)
                     login(request, user)
+                    request.session['is_login'] = True
+                    request.session['user_name'] = username
                     return redirect('/')
             else:
                 logger.info('账号密码错误，请重新输入')
@@ -113,20 +115,20 @@ def setpasswordView(request):
 
 def logoutView(request):
     logout(request)
-    return redirect('/')
+    return redirect('/new_user/login.html')
 
 
 def check_login(func):  # 自定义登录验证装饰器
     def warpper(request, *args, **kwargs):
-        is_login = request.session.get('is_login', False)
+        is_login = request.session.get('is_login')
         if is_login:
-            func(request, *args, **kwargs)
+            return func(request, *args, **kwargs)
         else:
-            return redirect("/")
+            return redirect("/new_user/login.html")
     return warpper
 
 
-@login_required
+@check_login
 def activityView(request, number):
     activity_id = BadmintonActivity.objects.get(activity_number=number).id
     logger.info(activity_id)
