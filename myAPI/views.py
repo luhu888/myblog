@@ -107,19 +107,25 @@ class SubstitutionAPIViewSet(generics.CreateAPIView):
             self.create(serializer)
             headers = self.get_success_headers(serializer.data)
             data = {
-                "msg": "success",
-                "code": 200,
+                "msg": "fail",
+                "code": 400,
                 "data": serializer.data
-
             }
             return Response(data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             logger.info(serializer.data)
-            data = {
-                "msg": "fail",
-                "code": 400,
-                "data": serializer.errors
-            }
+            try:
+                data = {
+                    "msg": "fail",
+                    "code": 400,
+                    "data": serializer.errors['non_field_errors']
+                }
+            except KeyError:
+                data = {
+                    "msg": "fail",
+                    "code": 400,
+                    "data": serializer.errors
+                }
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
