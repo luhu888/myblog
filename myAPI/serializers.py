@@ -51,7 +51,7 @@ class APIActivityRelatedSerializer(serializers.ModelSerializer):
             },
         }
         model = APIActivityRelated
-        fields = ('activity_number', 'joiner')
+        fields = ('activity_number', 'joiner', 'is_substitution')
         validators = [
             UniqueTogetherValidator(
                 queryset=APIActivityRelated.objects.all(),

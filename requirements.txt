@@ -5,6 +5,8 @@ coreapi==2.3.3
 coreschema==0.0.4
 Django==2.2.17
 django-cors-headers==3.5.0
+django-debug-toolbar==3.2
+django-filter==2.4.0
 django-rest-auth==0.9.5
 django-simpleui==2020.9.26
 djangorestframework==3.12.2

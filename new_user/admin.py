@@ -9,7 +9,7 @@ import base64
 class MyUserAdmin(UserAdmin):
     def my_weChat(self, obj):
         return base64.b64decode(obj.weChat).decode('utf8')
-    list_display = ['username', 'my_weChat']
+    list_display = ['id', 'username', 'my_weChat']
     my_weChat.short_description = '微信群昵称'
     list_per_page = 10
     # 新增用户时，在个人信息里添加'weChat'的信息录入
