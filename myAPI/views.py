@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from myAPI.models import APIActivityRelated, APIActivity
 from myAPI.serializers import APIActivityRelatedSerializer, Register1Serializer, GetJoinListSerializer, \
-    GetActivitySerializer, LoginSerializer, APISubstitutionSerializer
+    GetActivitySerializer, LoginSerializer, APISubstitutionSerializer, CancelActivitySerializer
 from new_user.models import BadmintonActivity, BadmintonActivityDetails, MyUser
 import logging
 from rest_framework import status
@@ -86,6 +86,47 @@ class JoinAPIViewSet(generics.CreateAPIView):
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
+class CancelAPIView(generics.CreateAPIView):
+    """
+    活动取消报名视图函数
+    """
+    # 序列化类
+    serializer_class = CancelActivitySerializer
+    # 查询集和结果集
+    queryset = APIActivityRelated.objects.all()
+    # 用户验证
+    permission_classes = [AllowAny, ]
+
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        logger.info(request.data)
+        if serializer.is_valid():
+            logger.info(serializer)
+            # serializer.delete()
+            update_join = APIActivityRelated.objects.get(activity_number=serializer.data['activity_number'],joiner=serializer.data['joiner'])
+            update_join.is_delete = True
+            update_join.save()
+            count = APIActivityRelated.objects.filter(activity_number=serializer.data['activity_number'], is_delete=False).count()
+            limit = APIActivity.objects.get(activity_number=serializer.data['activity_number']).limit_count
+            activity = APIActivity.objects.get(activity_number=serializer.data['activity_number'])
+            if count >= limit:  # 取消报名后有替补
+                need_update = APIActivityRelated.objects.filter(activity_number=serializer.data['activity_number'],is_substitution=True).order_by('operate_time').first()
+                need_update.is_substitution=False
+                need_update.save()
+            else:
+                activity.is_full = False
+            activity.save()
+            logger.info(limit)
+            data = {
+                "msg": "取消报名成功",
+                "code": 200,
+                "data": serializer.data
+
+            }
+            return Response(data, status=status.HTTP_200_OK)
+
+
 class SubstitutionAPIViewSet(generics.CreateAPIView):
     """
     活动替补视图函数
@@ -108,7 +149,7 @@ class SubstitutionAPIViewSet(generics.CreateAPIView):
             headers = self.get_success_headers(serializer.data)
             data = {
                 "msg": "fail",
-                "code": 400,
+                "code": 201,
                 "data": serializer.data
             }
             return Response(data, status=status.HTTP_201_CREATED, headers=headers)

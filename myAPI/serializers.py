@@ -82,6 +82,58 @@ class APIActivityRelatedSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("对不起,您报名的活动不存在")
 
 
+class CancelActivitySerializer(serializers.ModelSerializer):
+    """
+    活动取消报名序列化
+    """
+    class Meta:
+        extra_kwargs = {
+            'activity_number': {
+                'help_text': '活动id',
+                'required': True
+            },
+            'joiner': {
+                'help_text': '报名人id',
+                'required': True
+
+            },
+        }
+        model = APIActivityRelated
+        fields = ('activity_number', 'joiner')
+        # validators = [
+        #     UniqueTogetherValidator(
+        #         queryset=APIActivityRelated.objects.all(),
+        #         fields=('activity_number', 'joiner'),
+        #         message='该用户已报名，请勿重复报名',),
+
+        # ]
+
+    def validate(self, data):
+        is_operate = APIActivity.objects.get(activity_name=data['activity_number']).is_operate
+        is_full = APIActivity.objects.get(activity_name=data['activity_number']).is_full
+        is_cancel = APIActivity.objects.get(activity_name=data['activity_number']).is_cancel
+        is_alive = APIActivity.objects.get(activity_name=data['activity_number']).is_alive
+        is_exist = APIActivity.objects.get(activity_name=data['activity_number'],)
+        is_join = APIActivityRelated.objects.filter(activity_number=data['activity_number'], joiner=data['joiner'], is_delete=False)
+        logger.info(is_join)
+
+        if is_join:
+            if is_operate is False:
+                raise serializers.ValidationError('活动报名已截止')
+            elif is_full:
+                raise serializers.ValidationError('该活动已订满，请报名替补')
+            elif is_cancel:
+                raise serializers.ValidationError("对不起，该活动已取消")
+            elif is_alive is True:
+                raise serializers.ValidationError("对不起该活动已结束")
+            elif is_join is False:
+                raise serializers.ValidationError("您未参加该活动无需取消报名")
+            else:
+                return data
+        else:
+            raise serializers.ValidationError("对不起,您取消报名的活动不存在")
+
+
 class APISubstitutionSerializer(serializers.ModelSerializer):
     """
     活动替补序列化

@@ -15,7 +15,7 @@ urlpatterns = [
     path('api/activityDetail/', views.GetJoinListView.as_view()),
     path('api/activity/', views.ActivityListView.as_view()),
     path('api/substitution', views.SubstitutionAPIViewSet.as_view()),
-
+    path('api/cancelJoin', views.CancelAPIView.as_view()),
 ]
 #
 # handler404 = views.page_not_found
